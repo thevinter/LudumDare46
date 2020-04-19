@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class RoomTransfer : MonoBehaviour
 {
-
     public Vector2 cameraChange;
     public Vector3 playerChange;
     private CameraFollow cam;
+    private bool canTeleport = true;
+
+    private IEnumerator Teleport()
+    {
+        canTeleport = false;
+        yield return new WaitForSeconds(0.5f);
+        canTeleport = true;
+    }
 
     private void Start()
     {
@@ -23,9 +30,14 @@ public class RoomTransfer : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            cam.minPos += cameraChange;
-            cam.maxPos += cameraChange;
-            collision.transform.position += playerChange;
+            if (canTeleport)
+            {
+                StartCoroutine(Teleport());
+                cam.minPos += cameraChange;
+                cam.maxPos += cameraChange;
+                collision.transform.position += playerChange;
+            }
+            
         }
     }
 }

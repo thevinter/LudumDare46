@@ -8,9 +8,23 @@ public class PlayerTorch : MonoBehaviour
     private float currentFlame;
     public float decayRate = 0.01f;
     private bool isConsuming = true;
+    public Light l;
+
+    private void Update()
+    {
+        float dampening = currentFlame / 100;
+        float desiredRange = Random.Range(13f, 18f);
+        l.range = Mathf.Lerp(l.range, desiredRange, .2f) * dampening;
+        
+    }
+
+  
+
+
     // Start is called before the first frame update
     void Start()
     {
+        l = GetComponentInChildren<Light>();
         this.currentFlame = totalFlame;
         InvokeRepeating("Decay", 1f, 1f);
     }

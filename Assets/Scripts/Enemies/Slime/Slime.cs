@@ -15,7 +15,7 @@ public class Slime : EnemyController
     {
         if (health < 0)
         {
-            print("Dead");
+            Decrement();
             Destroy(this.gameObject);
         }
     }

@@ -26,7 +26,7 @@ public class RoomSpawner : MonoBehaviour
     // Update is called once per frame
     void Spawn()
     {
-        if (!spawned)
+        if (!templates.map[xcoord, ycoord].HasValue)
         {
 
             Constraints c = GetConstraints();
@@ -39,7 +39,7 @@ public class RoomSpawner : MonoBehaviour
 
             Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity);
             spawned = true;
-            templates.toPopulate -= 1
+            templates.toPopulate -= 1;
             templates.map[xcoord, ycoord] = roomType;
         }
     }
@@ -51,9 +51,9 @@ public class RoomSpawner : MonoBehaviour
             if(!collision.GetComponent<RoomSpawner>().spawned && !spawned)
             {
                 //Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
-            spawned = true;
+            //spawned = true;
         }
     }
 

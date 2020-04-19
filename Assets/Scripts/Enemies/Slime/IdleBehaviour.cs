@@ -18,7 +18,7 @@ public class IdleBehaviour : StateMachineBehaviour
     {
         if(Vector3.Distance(animator.gameObject.transform.position, player.transform.position) < slime.chaseDistance)
         {
-            Debug.Log(Vector3.Distance(animator.gameObject.transform.position, player.transform.position));
+
             animator.SetBool("isIdle", false);
             animator.SetBool("isChasing", true);
         } 
