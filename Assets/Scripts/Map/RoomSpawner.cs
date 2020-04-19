@@ -19,7 +19,7 @@ public class RoomSpawner : MonoBehaviour
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>() ;
         xcoord = MapProps.PosToMapCoord(transform.position.x);
         ycoord = MapProps.PosToMapCoord(transform.position.y);
-        spawned = templates.map[xcoord, ycoord].HasValue();
+        spawned = templates.map[xcoord, ycoord].HasValue;
         Invoke("Spawn", 0.1f);
     }
 
@@ -33,8 +33,10 @@ public class RoomSpawner : MonoBehaviour
             OpeningType mask = c.Item1;
             OpeningType forced = c.Item2;
             OpeningType invmask = mask ^ OpeningType.all;
-            OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all + 1);
+            OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all);
             roomType = (forced & mask | additional & invmask);
+            //print(forced);
+
             Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity);
             spawned = true;
             templates.map[xcoord, ycoord] = roomType;
@@ -47,7 +49,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if(!collision.GetComponent<RoomSpawner>().spawned && !spawned)
             {
-                Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                //Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             spawned = true;

@@ -6,14 +6,13 @@ using RoomUtils;
 public class RoomTemplates : MonoBehaviour
 {
 
-    public OpeningType?[,] map = new OpeningType?[100,100];
-    map[MapProps.center, MapProps.center] = OpeningType.all;
-
+    public OpeningType?[,] map = new OpeningType?[100, 100];
+ 
     public GameObject[] rooms;
     public GameObject closedRoom;
     void Start()
     {
-
+        map[50, 50] = OpeningType.all;
     }
 
     // Update is called once per frame
