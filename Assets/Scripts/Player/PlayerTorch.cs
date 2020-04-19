@@ -7,6 +7,7 @@ public class PlayerTorch : MonoBehaviour
     public int totalFlame = 100;
     private float currentFlame;
     public float decayRate = 0.01f;
+    private bool isConsuming = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,22 @@ public class PlayerTorch : MonoBehaviour
         this.currentFlame += x;
     }
 
+    public void SetConsuming(bool consume)
+    {
+        isConsuming = consume;
+    }
+
+    public void Fill()
+    {
+        currentFlame = totalFlame;
+    }
+
     // Update is called once per frame
     void Decay()
     {
-        this.currentFlame -= decayRate;
+        if (isConsuming)
+        {
+            this.currentFlame -= decayRate;
+        }
     }
 }

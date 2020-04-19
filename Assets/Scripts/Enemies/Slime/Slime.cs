@@ -13,6 +13,10 @@ public class Slime : EnemyController
     // Update is called once per frame
     void Update()
     {
-        
+        if (health < 0)
+        {
+            print("Dead");
+            Destroy(this.gameObject);
+        }
     }
 }

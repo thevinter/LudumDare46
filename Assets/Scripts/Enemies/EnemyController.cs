@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public int Health { get => health; set => throw new System.NotImplementedException(); }
     private GameObject player;
     public int chaseDistance;
-    int health = 20;
+    public int health = 20;
     public int speed;
 
 
@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         print("Damaging");
         StartCoroutine(TurnRed());
         health -= damage;
+        print(health + " " + damage);
     }
 
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-
+ 
     }
 
     private IEnumerator TurnRed()

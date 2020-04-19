@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
@@ -13,16 +14,33 @@ public class Player : MonoBehaviour
     public Controller2D controller;
     public PlayerShoot shoot;
     public IInteractable obj;
+    public bool isResting = false;
+
+    private PlayerAnimator anim; 
+
+    public GameObject itemTextBox;
 
     Vector2 directionalInput;
 
     private void Update()
     {
-        controller.Move(directionalInput.normalized, moveSpeed);
+        if(!isResting)
+            controller.Move(directionalInput.normalized, moveSpeed);
+    }
+
+    public void SetRestState(bool rest)
+    {
+        isResting = rest;
+        //fai robe animazione e musica
+        if (isResting)
+        {
+            torch.Fill();
+        }
     }
 
     void Start()
     {
+        anim = GetComponent<PlayerAnimator>();
         controller = GetComponent<Controller2D>();
         shoot = GetComponent<PlayerShoot>();
         torch = GetComponent<PlayerTorch>();
@@ -42,7 +60,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Usable"))
         {
+            print("pene");
             obj = collision.gameObject.GetComponent<IInteractable>();
+            itemTextBox.GetComponent<TextMeshProUGUI>().text = obj.Name;
+            itemTextBox.SetActive(true);
             canInteract = true;
         }
     }
@@ -51,6 +72,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Usable"))
         {
+            itemTextBox.SetActive(false);
             obj = null;
             canInteract = false;
         }

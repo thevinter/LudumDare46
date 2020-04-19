@@ -13,6 +13,7 @@ public class RoomTemplates : MonoBehaviour
 
     public RoomType[,] map = new int[100,100];
 
+    public GameObject[] rooms;
     public GameObject[] bottomRooms;
     public GameObject[] topRooms;
     public GameObject[] rightRooms;

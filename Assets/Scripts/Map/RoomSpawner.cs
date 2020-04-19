@@ -28,29 +28,29 @@ public class RoomSpawner : MonoBehaviour
         {
             int x = Mathf.RoundToInt(transform.position.x / 10);
             int y = Mathf.RoundToInt(transform.position.y / 10);
-            //switch (openingDirection)
-            //{
-            //    case 1:
-            //        CheckNeigh
-            //        Instantiate(templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)], transform.position, Quaternion.identity);
-            //        templates.map[coord / 10] = openingDirection * 2;
-            //        break;
-            //    case 2:
-            //        Instantiate(templates.leftRooms[Random.Range(0, templates.leftRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a left opening
-            //        break;
-            //    case 3:
-            //        Instantiate(templates.topRooms[Random.Range(0, templates.topRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a top opening
-            //        break;
-            //    case 4:
-            //        Instantiate(templates.rightRooms[Random.Range(0, templates.rightRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a right opening
-            //        break;
-            //    default:
-            //        Debug.LogWarning("Wrong room spawnpoint!");
-            //        break;
-            //}
+            switch (openingDirection)
+            {
+                case 1:
+                    //CheckNeigh
+                    Instantiate(templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)], transform.position, Quaternion.identity);
+                    //templates.map[coord / 10] = openingDirection * 2;
+                    break;
+                case 2:
+                    Instantiate(templates.leftRooms[Random.Range(0, templates.leftRooms.Length)], transform.position, Quaternion.identity);
+                    //door with a left opening
+                    break;
+                case 3:
+                    Instantiate(templates.topRooms[Random.Range(0, templates.topRooms.Length)], transform.position, Quaternion.identity);
+                    //door with a top opening
+                    break;
+                case 4:
+                    Instantiate(templates.rightRooms[Random.Range(0, templates.rightRooms.Length)], transform.position, Quaternion.identity);
+                    //door with a right opening
+                    break;
+                default:
+                    Debug.LogWarning("Wrong room spawnpoint!");
+                    break;
+            }
 
             spawned = true;
         }

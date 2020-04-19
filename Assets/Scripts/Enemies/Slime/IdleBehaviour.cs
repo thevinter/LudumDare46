@@ -16,8 +16,9 @@ public class IdleBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(Vector3.Distance(animator.transform.position, player.transform.position) > slime.chaseDistance)
+        if(Vector3.Distance(animator.gameObject.transform.position, player.transform.position) < slime.chaseDistance)
         {
+            Debug.Log(Vector3.Distance(animator.gameObject.transform.position, player.transform.position));
             animator.SetBool("isIdle", false);
             animator.SetBool("isChasing", true);
         } 

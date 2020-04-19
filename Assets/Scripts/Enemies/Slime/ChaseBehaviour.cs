@@ -20,6 +20,13 @@ public class ChaseBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, playerTransform.position, enemy.speed * Time.deltaTime);
+        if (Vector3.Distance(animator.transform.position, player.transform.position) > enemy.chaseDistance)
+        {
+            Debug.Log("NotChasing");
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isChasing", false);
+        }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
