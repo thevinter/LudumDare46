@@ -7,9 +7,9 @@ public class RoomTemplates : MonoBehaviour
 {
 
     public OpeningType?[,] map = new OpeningType?[100, 100];
- 
     public GameObject[] rooms;
-    public GameObject closedRoom;
+    public int toPopulate = 30;
+
     void Start()
     {
         map[50, 50] = OpeningType.all;

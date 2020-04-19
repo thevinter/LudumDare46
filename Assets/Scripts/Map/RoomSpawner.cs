@@ -34,11 +34,12 @@ public class RoomSpawner : MonoBehaviour
             OpeningType forced = c.Item2;
             OpeningType invmask = mask ^ OpeningType.all;
             OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all);
+            if (templates.toPopulate < 0) additional = OpeningType.none;
             roomType = (forced & mask | additional & invmask);
-            //print(forced);
 
             Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity);
             spawned = true;
+            templates.toPopulate -= 1
             templates.map[xcoord, ycoord] = roomType;
         }
     }
