@@ -3,4 +3,7 @@
 *.info
 *.log
 .vs/
+obj/
+ProjectSettings/
+Packages/
 Library/
