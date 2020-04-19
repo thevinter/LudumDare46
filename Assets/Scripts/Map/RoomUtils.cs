@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -26,12 +27,12 @@ namespace RoomUtils {
 
 	[Flags]
 	public enum OpeningType {
-		none = 0b0000;
-		bottom = 0b0001;
-		top = 0b0010;
-		left = 0b0100;
-		right = 0b1000;
-		all = bottom | top | left | right;
+		none = 0b0000,
+		bottom = 0b0001,
+		top = 0b0010,
+		left = 0b0100,
+		right = 0b1000,
+		all = bottom | top | left | right,
 	}
 
 }
