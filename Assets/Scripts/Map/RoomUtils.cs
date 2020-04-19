@@ -18,8 +18,8 @@ namespace RoomUtils {
 		private const OpeningType horizontal = OpeningType.left | OpeningType.right;
 
 		public static OpeningType Opposite(this OpeningType direction) {
-			if ((bool)(int)(direction & horizontal) return direction ^ horizontal;
-			else if (direction & vertical) return direction ^ vertical;
+			if (horizontal.HasFlag(direction)) return direction ^ horizontal;
+			else if (vertical.HasFlag(direction)) return direction ^ vertical;
 			else return OpeningType.none;  // error			
 		}
 	}   
