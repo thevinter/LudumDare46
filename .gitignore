@@ -1,4 +1,6 @@
 *.csproj
 *.sln
+*.info
+*.log
 .vs/
 Library/
