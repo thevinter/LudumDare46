@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RoomUtils;
-using Constraints = Tuple<OpeningType, OpeningType>;
+using Constraints = System.Tuple<RoomUtils.OpeningType, RoomUtils.OpeningType>;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -34,7 +34,7 @@ public class RoomSpawner : MonoBehaviour
             OpeningType invmask = mask ^ OpeningType.all;
             OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all + 1);
             roomType = (forced & mask | additional & invmask);
-            Instantiate(template.rooms[(int) roomType], transform.position, Quaternion.identity);
+            Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity);
             spawned = true;
             templates.map[xcoord, ycoord] = roomType;
         }
@@ -62,12 +62,12 @@ public class RoomSpawner : MonoBehaviour
             OpeningType? neighbor = GetNeighbor(direction);
             if (neighbor is OpeningType nb) {
                 forcedMask |= direction;
-                if nb.HasFlag(direction.Opposite()) {
+                if (nb.HasFlag(direction.Opposite())) {
                     forcedOpenings |= direction;
                 }
             }
         }
-        return Constraints(forcedMask, forcedOpenings);
+        return new Constraints(forcedMask, forcedOpenings);
     }
 
     public OpeningType? GetNeighbor(OpeningType direction) {
@@ -78,7 +78,7 @@ public class RoomSpawner : MonoBehaviour
             case OpeningType.top: y += 1; break;
             case OpeningType.left: x -= 1; break;
             case OpeningType.right: x += 1; break;
-            case default: break; // TODO: error!
+            default: break; // TODO: error!
         }
         return templates.map[x, y];
     }

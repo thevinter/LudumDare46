@@ -1,9 +1,11 @@
+using UnityEngine;
 
-public namespace RoomUtils {
+
+namespace RoomUtils {
 
 	public static class MapProps {
-		public static const int center = 50;
-		public static const int roomSize = 10;
+		public const int center = 50;
+		public const int roomSize = 10;
 
 		public static int PosToMapCoord(float gamePos) {
 			return Mathf.RoundToInt(gamePos / roomSize) + center;
@@ -16,11 +18,11 @@ public namespace RoomUtils {
 		private const OpeningType horizontal = OpeningType.left | OpeningType.right;
 
 		public static OpeningType Opposite(this OpeningType direction) {
-			if (direction & horizontal) return direction ^ horizontal;
+			if ((bool)(int)(direction & horizontal) return direction ^ horizontal;
 			else if (direction & vertical) return direction ^ vertical;
-			else;  // error			
+			else return OpeningType.none;  // error			
 		}
-	}
+	}   
 
 	[Flags]
 	public enum OpeningType {

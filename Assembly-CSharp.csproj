@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Map\RoomSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\RoomTemplates.cs" />
     <Compile Include="Assets\Scripts\Map\RoomTransfer.cs" />
+    <Compile Include="Assets\Scripts\Map\RoomUtils.cs" />
     <Compile Include="Assets\Scripts\Objects\Bonfire.cs" />
     <Compile Include="Assets\Scripts\Objects\Torch.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponKnife.cs" />
