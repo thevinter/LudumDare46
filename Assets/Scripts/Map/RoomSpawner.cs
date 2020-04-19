@@ -12,13 +12,14 @@ public class RoomSpawner : MonoBehaviour
     private int xcoord;
     private int ycoord;
     private OpeningType roomType;
-    private bool spawned = false;
+    private bool spawned;
 
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>() ;
         xcoord = MapProps.PosToMapCoord(transform.position.x);
         ycoord = MapProps.PosToMapCoord(transform.position.y);
+        spawned = templates.map[xcoord, ycoord].HasValue();
         Invoke("Spawn", 0.1f);
     }
 

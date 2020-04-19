@@ -7,12 +7,9 @@ public class RoomTemplates : MonoBehaviour
 {
 
     public OpeningType?[,] map = new OpeningType?[100,100];
+    map[MapProps.center, MapProps.center] = OpeningType.all;
 
     public GameObject[] rooms;
-    public GameObject[] bottomRooms;
-    public GameObject[] topRooms;
-    public GameObject[] rightRooms;
-    public GameObject[] leftRooms;
     public GameObject closedRoom;
     void Start()
     {
