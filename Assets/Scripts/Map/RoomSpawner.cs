@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RoomUtils;
+using Constraints = Tuple<OpeningType, OpeningType>;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class RoomSpawner : MonoBehaviour
 {
-    public int openingDirection;
-    //1 -> bottom
-    //2 -> left
-    //3 -> top
-    //4 -> right
-
     private RoomTemplates templates;
+    private int xcoord;
+    private int ycoord;
+    private OpeningType roomType;
     private bool spawned = false;
 
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>() ;
+        xcoord = MapProps.PosToMapCoord(transform.position.x);
+        ycoord = MapProps.PosToMapCoord(transform.position.y);
         Invoke("Spawn", 0.1f);
     }
 
@@ -26,33 +27,15 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!spawned)
         {
-            int x = Mathf.RoundToInt(transform.position.x / 10);
-            int y = Mathf.RoundToInt(transform.position.y / 10);
-            //switch (openingDirection)
-            //{
-            //    case 1:
-            //        CheckNeigh
-            //        Instantiate(templates.bottomRooms[Random.Range(0, templates.bottomRooms.Length)], transform.position, Quaternion.identity);
-            //        templates.map[coord / 10] = openingDirection * 2;
-            //        break;
-            //    case 2:
-            //        Instantiate(templates.leftRooms[Random.Range(0, templates.leftRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a left opening
-            //        break;
-            //    case 3:
-            //        Instantiate(templates.topRooms[Random.Range(0, templates.topRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a top opening
-            //        break;
-            //    case 4:
-            //        Instantiate(templates.rightRooms[Random.Range(0, templates.rightRooms.Length)], transform.position, Quaternion.identity);
-            //        //door with a right opening
-            //        break;
-            //    default:
-            //        Debug.LogWarning("Wrong room spawnpoint!");
-            //        break;
-            //}
-
+            Constraints c = GetConstraints();
+            OpeningType mask = c.Item1;
+            OpeningType forced = c.Item2;
+            OpeningType invmask = mask ^ OpeningType.all;
+            OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all + 1);
+            roomType = (forced & mask | additional & invmask);
+            Instantiate(template.rooms[(int) roomType], transform.position, Quaternion.identity);
             spawned = true;
+            templates.map[xcoord, ycoord] = roomType;
         }
     }
 
@@ -67,5 +50,35 @@ public class RoomSpawner : MonoBehaviour
             }
             spawned = true;
         }
+    }
+
+    public Constraints GetConstraints() {
+        OpeningType forcedMask = OpeningType.none;
+        OpeningType forcedOpenings = OpeningType.none;
+
+        for (int i=0; i<4; i++) {
+            OpeningType direction = (OpeningType) (1 << i);
+            OpeningType? neighbor = GetNeighbor(direction);
+            if (neighbor is OpeningType nb) {
+                forcedMask |= direction;
+                if nb.HasFlag(direction.Opposite()) {
+                    forcedOpenings |= direction;
+                }
+            }
+        }
+        return Constraints(forcedMask, forcedOpenings);
+    }
+
+    public OpeningType? GetNeighbor(OpeningType direction) {
+        int x = xcoord;
+        int y = ycoord;
+        switch (direction) {
+            case OpeningType.bottom: y -= 1; break;
+            case OpeningType.top: y += 1; break;
+            case OpeningType.left: x -= 1; break;
+            case OpeningType.right: x += 1; break;
+            case default: break; // TODO: error!
+        }
+        return templates.map[x, y];
     }
 }
