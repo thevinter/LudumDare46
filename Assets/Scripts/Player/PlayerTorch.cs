@@ -28,7 +28,6 @@ public class PlayerTorch : MonoBehaviour
                 desiredIntensity = Random.Range(1.7f, 2.2f);
                 nframes = 0;
             }
-            print(totalFlame / currentFlame);
             if(!p.tutorial)fillbar.fillAmount = currentFlame / totalFlame;
             desiredRange = 15 * dampening;
 

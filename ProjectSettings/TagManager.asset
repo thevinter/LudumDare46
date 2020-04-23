@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerBullet
+  - Usable
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Walls
+  - Player
   - 
   - 
   - 
@@ -38,6 +40,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 604265819
+    locked: 0
+  - name: Floor
+    uniqueID: 1141272039
+    locked: 0
+  - name: Walls
+    uniqueID: 1359928639
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 3990068623
+    locked: 0
+  - name: Player
+    uniqueID: 462783393
+    locked: 0
+  - name: Top
+    uniqueID: 1102721409
+    locked: 0
+  - name: Weather
+    uniqueID: 3322124799
     locked: 0

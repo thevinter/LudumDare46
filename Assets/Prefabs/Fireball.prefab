@@ -50,6 +50,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -61,6 +62,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -71,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 194357253
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 827538889749247048, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: {fileID: 8300000, guid: d0489e4c01e66ac4b8870cf6c77886df, type: 3}
   damage: 5
-  bulletSpeed: 7
-  bulletDelay: 0.4
+  bulletSpeed: 12
+  bulletDelay: 0.2
   decayTime: 2
 --- !u!50 &6910742207969503793
 Rigidbody2D:
@@ -206,8 +208,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5474628510556200914}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.34778148, b: 0.17421682, a: 1}
   m_Intensity: 3.36
   m_Range: 2.26

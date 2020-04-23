@@ -28,7 +28,6 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot(float x, float y)
     {
-        print(fireDelay);
         if (CanShoot())
         {
             float s, c;
@@ -44,7 +43,6 @@ public class PlayerShoot : MonoBehaviour
             Quaternion q = new Quaternion(0,0,s , c);
 
             GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, q) as GameObject;
-            print(q);
             bulletInstance.GetComponent<Rigidbody2D>().velocity = new Vector3(
                 (x < 0) ? Mathf.Floor(x) * bulletSpeed : Mathf.Ceil(x) * bulletSpeed,
                 (y < 0) ? Mathf.Floor(y) * bulletSpeed : Mathf.Ceil(y) * bulletSpeed,

@@ -57,7 +57,7 @@ public class Player : MonoBehaviour, IDamageable
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 // set color with i as alpha
-                img.color = new Color(0, 0, 0, i);
+                //img.color = new Color(0, 0, 0, i);
                 yield return null;
             }
             
@@ -70,21 +70,22 @@ public class Player : MonoBehaviour, IDamageable
             for (float i = 0; i <= 2; i += Time.deltaTime)
             {
                 // set color with i as alpha
-                img.color = new Color(0, 0, 0, i);
+                //img.color = new Color(0, 0, 0, i);
                 yield return null;
             }
-            if (gameOver) SceneManager.LoadScene("GameOver");
+            //if (gameOver) SceneManager.LoadScene("GameOver");
         }
     }
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!isResting)
             controller.Move(directionalInput.normalized, moveSpeed);
         Step();
     }
+
 
     public void SetRestState(bool rest)
     {
@@ -167,8 +168,6 @@ public class Player : MonoBehaviour, IDamageable
             AudioClip stepSound = steps[Random.Range(0, steps.Length - 1)];
             AudioManager.Instance.Play(stepSound, transform, .2f);
         }
- 
-
     }
 
     public void Damage(int damage)

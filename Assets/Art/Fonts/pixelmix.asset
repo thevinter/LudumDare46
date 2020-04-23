@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: pixelmix
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1074663604
   material: {fileID: 7081503498482299321}
-  materialHashCode: 0
+  materialHashCode: 1622870719
   m_Version: 1.1.0
   m_SourceFontFileGUID: 314ae99f669aa0b499f8ca56ec92cac4
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -2317,6 +2317,7 @@ MonoBehaviour:
     kerningPairs: []
   m_FontFeatureTable:
     m_GlyphPairAdjustmentRecords: []
+  fallbackFontAssets: []
   m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
@@ -2382,6 +2383,7 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 1
+  m_IgnoreMasterTextureLimit: 0
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0
