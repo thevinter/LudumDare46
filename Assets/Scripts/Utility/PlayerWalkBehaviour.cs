@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ChrisTutorials.Persistent;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,10 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
 {
     Player p;
     Rigidbody2D playerRb;
+    PlayerInput pi;
     float lastX, lastY;
+    public AudioClip bonfireStart;
+ 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -14,18 +18,33 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
         playerRb = animator.GetComponent<Rigidbody2D>();
         lastX = p.transform.position.x;
         lastY = p.transform.position.y;
+        pi = p.GetComponent<PlayerInput>();
+        bonfireStart = p.moveStart;
+        AudioManager.Instance.Play(bonfireStart, animator.transform, .05f, 3f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        bool input = p.directionalInput.x != 0 || p.directionalInput.y != 0;
+        float movementX = Mathf.Abs(animator.transform.position.x - lastX);
+        float movementY = Mathf.Abs(animator.transform.position.y - lastY);
+        bool movement = movementX != 0 && movementY != 0;
+        animator.SetBool("isIdle", !input && !movement);
+        animator.SetBool("isWalking", input && movement);
+        animator.SetBool("isAttacking", (pi.shootHorizontal != 0 || pi.shootVertical != 0));
 
-        if (Mathf.Abs(p.transform.position.x - lastX) == 0 && Mathf.Abs(p.transform.position.y - lastY) == 0)
+        if(Mathf.Abs(p.directionalInput.x) == Mathf.Abs(p.directionalInput.y))
         {
-            
-            animator.SetBool("isIdle", true);
+            animator.SetFloat("velocityX", 0);
+            animator.SetFloat("velocityY", p.directionalInput.y);
         }
+        else
+        {
+            animator.SetFloat("velocityX", p.directionalInput.x);
+            animator.SetFloat("velocityY", p.directionalInput.y);
+        }
+
         lastX = p.transform.position.x;
         lastY = p.transform.position.y;
     }
@@ -33,8 +52,7 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Im exiting");
-        animator.SetBool("isWalking", false);
+       
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

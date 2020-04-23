@@ -1,20 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTorch : MonoBehaviour
 {
-    public int totalFlame = 100;
-    private float currentFlame;
-    public float decayRate = 0.01f;
+    public int totalFlame = 130;
+    public float currentFlame;
+    public float decayRate = 0.1f;
     private bool isConsuming = true;
     public Light l;
-
+    public TextMeshProUGUI text;
+    private int nframes = 0;
+    float desiredIntensity = 2;
+    float desiredRange = 15;
+    Player p;
+    public Image fillbar;
+    float dampening = 100;
     private void Update()
     {
-        float dampening = currentFlame / 100;
-        float desiredRange = Random.Range(13f, 18f);
-        l.range = Mathf.Lerp(l.range, desiredRange, .2f) * dampening;
+
+            nframes++;
+            if (nframes >= 2)
+            {
+                dampening = currentFlame / 100;
+                desiredIntensity = Random.Range(1.7f, 2.2f);
+                nframes = 0;
+            }
+            print(totalFlame / currentFlame);
+            if(!p.tutorial)fillbar.fillAmount = currentFlame / totalFlame;
+            desiredRange = 15 * dampening;
+
+            if(!p.tutorial)l.range = desiredRange;
+            if(!p.tutorial)l.intensity = desiredIntensity;
+            if (currentFlame > totalFlame)
+            {
+                currentFlame = totalFlame;
+            }
+            if (currentFlame < 0)
+            {
+                p.Die();
+            }
         
     }
 
@@ -27,6 +54,7 @@ public class PlayerTorch : MonoBehaviour
         l = GetComponentInChildren<Light>();
         this.currentFlame = totalFlame;
         InvokeRepeating("Decay", 1f, 1f);
+        p = GetComponent<Player>();
     }
     
     public void Recharge(int x)

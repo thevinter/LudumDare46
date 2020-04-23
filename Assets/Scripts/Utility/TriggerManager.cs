@@ -12,9 +12,8 @@ public class TriggerManager : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !roomManager.isSpawned)
+        if (collision.CompareTag("Player") && !roomManager.isSpawned && !roomManager.isStarting)
         {
-            print("culo");
             roomManager.Spawn();
         }
     }

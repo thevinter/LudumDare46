@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ChrisTutorials.Persistent;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,16 @@ public class RoomManager : MonoBehaviour
 {
     public GameObject[] spawners;
     public GameObject[] doors;
+    public GameObject exit;
     int nMonsters = 0;
     public bool isSpawned = false;
-
+    public AudioClip open;
+    public AudioClip closed;
+    public bool isStarting = false;
+    private bool isOpened = false;
+    public AudioClip spawnSound;
     public void addMonster()
     {
-        print("adding a monster");
         nMonsters++;
     }
 
@@ -20,14 +25,22 @@ public class RoomManager : MonoBehaviour
         nMonsters--;
     }
     // Start is called before the first frame update
-    void Start()
+    public void SpawnExit()
     {
-        
+        exit.GetComponent<ISpawner>().Spawn();
     }
 
     void OpenDoors(bool state)
     {
-        foreach(GameObject g in doors){
+        if (!state && !isStarting)
+        {
+            AudioController.PlaySound("doorOpen");
+        }
+        else
+        {
+            AudioController.PlaySound("doorClose");
+        }
+        foreach (GameObject g in doors){
             g.SetActive(!state);
         }
     }
@@ -37,21 +50,20 @@ public class RoomManager : MonoBehaviour
         OpenDoors(false);
         for(int i = 0; i < spawners.Length; i++) 
         {
-            spawners[i].GetComponent<ISpawner>().Spawn();
+            if(spawners[i] != null)
+                spawners[i].GetComponent<ISpawner>().Spawn();
         }
+        AudioManager.Instance.Play(spawnSound, transform, .1f);
         isSpawned = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("No of monsters is: " + nMonsters);
-        if (Input.GetKeyDown(KeyCode.C) && !isSpawned)
+
+        if(isSpawned && nMonsters == 0 && !isOpened && !isStarting)
         {
-            Spawn();
-        }
-        if(isSpawned && nMonsters == 0)
-        {
+            isOpened = true;
             OpenDoors(true);
         }
     }

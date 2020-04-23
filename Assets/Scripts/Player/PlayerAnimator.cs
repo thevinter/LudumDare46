@@ -15,9 +15,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        if (p.isResting)
-        {
-            anim.SetBool("isResting", true);
-        }
+        anim.SetBool("isResting", p.isResting);
     }
 }

@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Player))]
 public class PlayerInput : MonoBehaviour
 {
-
+    public float shootHorizontal;
+    public float shootVertical;
     Player player;
 
     void Start()
@@ -22,8 +23,8 @@ public class PlayerInput : MonoBehaviour
             player.Interact();
         }
 
-        float shootHorizontal = Input.GetAxisRaw("ShootHorizontal");
-        float shootVertical = Input.GetAxisRaw("ShootVertical");
+        shootHorizontal = Input.GetAxisRaw("ShootHorizontal");
+        shootVertical = Input.GetAxisRaw("ShootVertical");
         if((shootHorizontal != 0 || shootVertical != 0))
         {
             player.shoot.Shoot(shootHorizontal, shootVertical);

@@ -7,7 +7,9 @@ public class BarrierSpawner : MonoBehaviour, ISpawner
     public GameObject[] barrier;
     public void Spawn()
     {
-        Instantiate(barrier[Random.Range(0, barrier.Length - 1)], transform.position, Quaternion.identity);
+        GameObject itemToSpawn = barrier[Random.Range(0, barrier.Length - 1)];
+        if (itemToSpawn != null)
+            Instantiate(itemToSpawn, transform.position, Quaternion.identity);
     }
 
     // Start is called before the first frame update

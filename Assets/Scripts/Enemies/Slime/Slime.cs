@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slime : EnemyController
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,24 @@ public class Slime : EnemyController
         if (health < 0)
         {
             Decrement();
-            Destroy(this.gameObject);
+            AudioController.PlaySound("enemyDeath");
+            gameObject.SetActive(false);
+            //Destroy(this.gameObject.GetComponent<Collider2D>());
+            //Destroy(this.gameObject, 0.8f);
         }
+        if (canAttack && isAttacking)
+        {
+            target.GetComponent<IDamageable>().Damage(damage);
+            canAttack = false;
+            StartCoroutine(Attack());
+        }
+    }
+
+    IEnumerator Attack()
+    {
+
+        yield return new WaitForSeconds(.4f);
+        canAttack = true;
+
     }
 }

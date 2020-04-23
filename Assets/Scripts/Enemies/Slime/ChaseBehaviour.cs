@@ -22,8 +22,12 @@ public class ChaseBehaviour : StateMachineBehaviour
         animator.transform.position = Vector3.MoveTowards(animator.transform.position, playerTransform.position, enemy.speed * Time.deltaTime);
         if (Vector3.Distance(animator.transform.position, player.transform.position) > enemy.chaseDistance)
         {
-            Debug.Log("NotChasing");
             animator.SetBool("isIdle", true);
+            animator.SetBool("isChasing", false);
+        }
+        if (Vector3.Distance(animator.transform.position, player.transform.position) < enemy.attackDistance)
+        {
+            animator.SetBool("isAttacking", true);
             animator.SetBool("isChasing", false);
         }
 

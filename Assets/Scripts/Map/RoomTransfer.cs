@@ -11,8 +11,7 @@ public class RoomTransfer : MonoBehaviour
 
     private IEnumerator Teleport()
     {
-        canTeleport = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(.7f);
         canTeleport = true;
     }
 
@@ -23,21 +22,18 @@ public class RoomTransfer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && canTeleport)
         {
-            if (canTeleport)
-            {
-                StartCoroutine(Teleport());
-                cam.minPos += cameraChange;
-                cam.maxPos += cameraChange;
-                collision.transform.position += playerChange;
-            }
-            
+            canTeleport = false;
+            StartCoroutine(Teleport());
+            cam.minPos += cameraChange;
+            cam.maxPos += cameraChange;
+            collision.transform.position += playerChange;            
         }
     }
 }

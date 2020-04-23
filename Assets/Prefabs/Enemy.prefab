@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3884819770005727475}
   - component: {fileID: 3884819770005727468}
   - component: {fileID: 3884819770005727471}
+  - component: {fileID: 4136212967584734547}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e43bfe67728a50344bea8e5563716eb6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 72e60a4615e089544b7c0ef1248191d1, type: 3}
+  m_SortingLayerID: -743740097
+  m_SortingLayer: 3
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 297761703447499198, guid: 6e3f93fdd433acc47be343cf4ddb07c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +108,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8977339, y: 0.564024}
+  m_Size: {x: 1.14, y: 0.69}
   m_EdgeRadius: 0
 --- !u!50 &3884819770005727475
 Rigidbody2D:
@@ -117,7 +118,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884819770005727474}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -129,7 +130,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &3884819770005727468
 Animator:
   serializedVersion: 3
@@ -163,5 +164,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 0}
   chaseDistance: 5
-  health: 20
-  speed: 3
+  health: 30
+  speed: 1.3
+  attackDistance: 1
+  attackRate: 0.5
+  target: {fileID: 0}
+  damage: 2
+  canAttack: 1
+  isAttacking: 0
+  monsterDamage:
+  - {fileID: 8300000, guid: abb2408b3fedd7c4b82e6334d26f6347, type: 3}
+  - {fileID: 8300000, guid: ce6a7959d050635448629a8017ddf432, type: 3}
+--- !u!58 &4136212967584734547
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884819770005727474}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.21}
+  serializedVersion: 2
+  m_Radius: 0.22

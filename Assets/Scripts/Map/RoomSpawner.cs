@@ -36,25 +36,14 @@ public class RoomSpawner : MonoBehaviour
             OpeningType additional = (OpeningType) Random.Range(0, (int) OpeningType.all);
             if (templates.toPopulate < 0) additional = OpeningType.none;
             roomType = (forced & mask | additional & invmask);
-
-            Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity);
+            templates.lastRoom = Instantiate(templates.rooms[(int) roomType], transform.position, Quaternion.identity) as GameObject;
             spawned = true;
             templates.toPopulate -= 1;
             templates.map[xcoord, ycoord] = roomType;
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("SpawnPoint"))
-        {
-            if(!collision.GetComponent<RoomSpawner>().spawned && !spawned)
-            {
-                //Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
-                //Destroy(gameObject);
-            }
-            //spawned = true;
         }
+
+
     }
 
     public Constraints GetConstraints() {

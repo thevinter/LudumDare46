@@ -21,6 +21,8 @@ public class ItemSpawner : MonoBehaviour, ISpawner
     public void Spawn()
     {
         //print("Spawned!");
-        Instantiate(items[Random.Range(0, items.Length - 1)], transform.position, Quaternion.identity);
+        GameObject itemToSpawn = items[Random.Range(0, items.Length - 1)];
+        if (itemToSpawn != null)
+            Instantiate(itemToSpawn, transform.position, Quaternion.identity);
     }
 }

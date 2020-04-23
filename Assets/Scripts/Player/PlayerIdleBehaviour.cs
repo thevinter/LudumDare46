@@ -6,27 +6,25 @@ public class PlayerIdleBehaviour : StateMachineBehaviour
 {
     Player p;
     Rigidbody2D playerRb;
-    float lastX, lastY;
+    PlayerInput pi;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         p = animator.GetComponent<Player>();
         playerRb = animator.GetComponent<Rigidbody2D>();
-        lastX = p.transform.position.x;
-        lastY = p.transform.position.y;
+        pi = p.GetComponent<PlayerInput>();
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
-        if(Mathf.Abs(p.transform.position.x - lastX) > Mathf.Epsilon || Mathf.Abs(p.transform.position.y - lastY) > Mathf.Epsilon)
-        {
-            Debug.Log("im here");
-            animator.SetBool("isWalking", true);
-        }
-        lastX = p.transform.position.x;
-        lastY = p.transform.position.y;
+        animator.SetBool("isIdle", !(p.directionalInput.x != 0 || p.directionalInput.y != 0));
+        animator.SetBool("isWalking", p.directionalInput.x != 0 || p.directionalInput.y != 0);
+        animator.SetBool("isAttacking", pi.shootHorizontal != 0 || pi.shootVertical != 0);
+        animator.SetFloat("velocityX", p.directionalInput.x);
+        animator.SetFloat("velocityY", p.directionalInput.y);
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
