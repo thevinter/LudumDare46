@@ -21,7 +21,7 @@ SpriteAtlas:
       crunchedCompression: 0
       sRGB: 1
     platformSettings:
-    - serializedVersion: 2
+    - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
@@ -32,6 +32,7 @@ SpriteAtlas:
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
       m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 1
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -43,11 +44,12 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: e1078699513ec7b41b98d90001ce9e81, type: 3}
     - {fileID: 102900000, guid: e2bfc896e03274447af6ab0fb897a052, type: 3}
-    totalSpriteSurfaceArea: 131776
+    totalSpriteSurfaceArea: 145088
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 0bce985072a4212418416d9ab57e41c0, type: 3}
+  - {fileID: 21300000, guid: 96b6ff31b8cc6d04e938e41c1a1f1cae, type: 3}
   - {fileID: -4927533949171487880, guid: a08c5bb18a76eb44a8918bbdd56a0db3, type: 3}
   - {fileID: -3718020969999653077, guid: a08c5bb18a76eb44a8918bbdd56a0db3, type: 3}
   - {fileID: -4473554079132131015, guid: a08c5bb18a76eb44a8918bbdd56a0db3, type: 3}
@@ -83,6 +85,7 @@ SpriteAtlas:
   - {fileID: 8334651344603559088, guid: c4fee042bd5b70d45814d5b30bb93ee1, type: 3}
   - {fileID: 9204931480678746970, guid: c4fee042bd5b70d45814d5b30bb93ee1, type: 3}
   - {fileID: 21300000, guid: 2702fa7207cffa34c8895f9a8fcb509d, type: 3}
+  - {fileID: 21300000, guid: 72acbe724e541e14cb102d58caa37580, type: 3}
   - {fileID: 21300000, guid: ff761834c758e6e499d6f7bed76f9544, type: 3}
   - {fileID: 21300000, guid: c2fee805be2097f4d8f87a8948108417, type: 3}
   - {fileID: 21300000, guid: 97962e95bfa790c44a982b8fb394d318, type: 3}
@@ -148,6 +151,14 @@ SpriteAtlas:
   - {fileID: 827538889749247048, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
   - {fileID: -5010287565412364656, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
   - {fileID: 21300000, guid: bdcefe4db70e4c34f960eb046e36d8e5, type: 3}
+  - {fileID: -675104096977794455, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: 7675826601332790545, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: -4862007459847594908, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: -4412926668834298731, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: 2278881825021241808, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: -7914957615168794202, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: 5999283557275819326, guid: b7f23bcd0370dba488546584b9786160, type: 3}
+  - {fileID: 1763547749914876530, guid: b7f23bcd0370dba488546584b9786160, type: 3}
   - {fileID: 4258081263921899527, guid: 6e3f93fdd433acc47be343cf4ddb07c0, type: 3}
   - {fileID: -6686358444854819152, guid: 6e3f93fdd433acc47be343cf4ddb07c0, type: 3}
   - {fileID: 8411463563914695271, guid: 6e3f93fdd433acc47be343cf4ddb07c0, type: 3}
@@ -174,6 +185,7 @@ SpriteAtlas:
   - {fileID: -4696473104816917502, guid: e261617fac1553745a16a7da60f1b597, type: 3}
   m_PackedSpriteNamesToIndex:
   - Torch
+  - wood
   - tile_29
   - tile_4
   - tile_5
@@ -209,6 +221,7 @@ SpriteAtlas:
   - fire_0
   - fire_1
   - Player
+  - startbutton
   - Knife
   - bullet2
   - Spawn
@@ -274,6 +287,14 @@ SpriteAtlas:
   - attack_0
   - attack_1
   - flamebar
+  - coin_1
+  - coin_0
+  - coin_3
+  - coin_2
+  - coin_5
+  - coin_4
+  - coin_7
+  - coin_6
   - enemy_8
   - enemy_9
   - enemy_4
