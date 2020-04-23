@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
 public class PlayerTorch : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerTorch : MonoBehaviour
     public float currentFlame;
     public float decayRate = 0.1f;
     private bool isConsuming = true;
-    public Light l;
+    public Light2D l;
     public TextMeshProUGUI text;
     private int nframes = 0;
     float desiredIntensity = 2;
@@ -22,16 +23,16 @@ public class PlayerTorch : MonoBehaviour
     {
 
             nframes++;
-            if (nframes >= 2)
+            if (nframes >= 10)
             {
-                dampening = currentFlame / 100;
+                desiredRange = Random.Range(2.48f, 2.52f);
                 desiredIntensity = Random.Range(1.7f, 2.2f);
                 nframes = 0;
             }
             if(!p.tutorial)fillbar.fillAmount = currentFlame / totalFlame;
-            desiredRange = 15 * dampening;
+           
 
-            if(!p.tutorial)l.range = desiredRange;
+            if (p.tutorial)l.pointLightInnerRadius = desiredRange;
             if(!p.tutorial)l.intensity = desiredIntensity;
             if (currentFlame > totalFlame)
             {
@@ -50,7 +51,7 @@ public class PlayerTorch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        l = GetComponentInChildren<Light>();
+        l = GetComponentInChildren<Light2D>();
         this.currentFlame = totalFlame;
         InvokeRepeating("Decay", 1f, 1f);
         p = GetComponent<Player>();
