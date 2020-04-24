@@ -9,5 +9,11 @@ public class State : ScriptableObject
     public string[] dialogueOptions;
     public State nextState;
     public GameObject questReward;
-    public bool autoAdvance;
+    public Quest currentQuest;
+    public delegate bool CheckCompletition();
+    public bool IsCompleted(CheckCompletition c) {
+        if (c == null) return true;
+        else return c();
+    }
+       
 }

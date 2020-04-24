@@ -16,9 +16,10 @@ public class NpcOneBehaviour : MonoBehaviour, INpc, IInteractable
     private bool isTalking = false;
 
     [SerializeField] private string npcname = "NPC1";
-    [SerializeField] private State[] states;
+    [SerializeField] private State[] states = null;
     
     private State currentState;
+
 
     public void Speak(){
         PrintString(currentState.dialogueOptions);
@@ -26,27 +27,27 @@ public class NpcOneBehaviour : MonoBehaviour, INpc, IInteractable
         {
             //player.give(currentState.questReward)
         }
-        if (currentState.autoAdvance && currentState.nextState != null)
-        {
-                
+        //print(currentState.nextState);
+        if (currentState.IsCompleted(() => WorldState.isDoorOpen) && currentState.nextState != null) {
             currentState = currentState.nextState;
         }
-        print(currentState.nextState);
     }
 
     public void Start(){
+        states[2].currentQuest = new SampleQuest();
         test.doorOpen += OnDoorOpen;
         currentState = states[0];
+        
     }
 
     public void OnDoorOpen(){
-        currentState = states[3];
+        WorldState.isDoorOpen = true;
         test.doorOpen -= OnDoorOpen;
     }
 
     public void Interact(Player p)
     {
-        if(!isTalking)Speak();
+        if (!isTalking)Speak();
     }
 
     private async void PrintString(string[] sentences)
