@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: e1078699513ec7b41b98d90001ce9e81, type: 3}
     - {fileID: 102900000, guid: e2bfc896e03274447af6ab0fb897a052, type: 3}
-    totalSpriteSurfaceArea: 145088
+    totalSpriteSurfaceArea: 146112
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -150,6 +150,7 @@ SpriteAtlas:
   - {fileID: -5182820943178688908, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
   - {fileID: 827538889749247048, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
   - {fileID: -5010287565412364656, guid: 98a1d71c5c92a6f41935d92998209422, type: 3}
+  - {fileID: 21300000, guid: 1f7b312d31eb79a499975b3ac405dc71, type: 3}
   - {fileID: 21300000, guid: bdcefe4db70e4c34f960eb046e36d8e5, type: 3}
   - {fileID: -675104096977794455, guid: b7f23bcd0370dba488546584b9786160, type: 3}
   - {fileID: 7675826601332790545, guid: b7f23bcd0370dba488546584b9786160, type: 3}
@@ -286,6 +287,7 @@ SpriteAtlas:
   - attack_3
   - attack_0
   - attack_1
+  - ooooooooo
   - flamebar
   - coin_1
   - coin_0

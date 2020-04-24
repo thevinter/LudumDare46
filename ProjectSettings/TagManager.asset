@@ -6,6 +6,11 @@ TagManager:
   tags:
   - PlayerBullet
   - Usable
+  - SpawnPoint
+  - Trigger
+  - Enemy
+  - NPC
+  - Interactable
   layers:
   - Default
   - TransparentFX

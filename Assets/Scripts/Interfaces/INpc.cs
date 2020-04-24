@@ -5,6 +5,6 @@ using UnityEngine;
 interface INpc
 {
     string Name { get; set; }
-    Dialogue[] Dialogue { get; set; }
+    State[] States { get; set; }
     void Speak();
 }

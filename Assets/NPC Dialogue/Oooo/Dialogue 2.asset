@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
-  m_Name: Dialogue 1
+  m_Name: Dialogue 2
   m_EditorClassIdentifier: 
   dialogueOptions:
-  - OOOooooooooooooooooOOO
-  - Hello you're finally awake
+  - You already talked to me once
+  - Stop disturbing my sleep!
+  nextState: -1

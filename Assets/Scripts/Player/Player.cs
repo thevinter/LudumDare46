@@ -9,7 +9,6 @@ public class Player : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 6;
 
-    Vector3 velocity;
     public bool tutorial = false;
     public bool canInteract = false;
     public PlayerTorch torch;
@@ -32,11 +31,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool gameOver = false;
     public int Health { get => (int)torch.currentFlame; set => throw new System.NotImplementedException(); }
 
-    private void OnLevelWasLoaded(int level)
-    {
 
-
-    }
 
     public void Die()
     {
@@ -120,11 +115,11 @@ public class Player : MonoBehaviour, IDamageable
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Usable"))
+        if (collision.gameObject.CompareTag("Interactable"))
         {
             obj = collision.gameObject.GetComponent<IInteractable>();
-            itemTextBox.GetComponent<TextMeshProUGUI>().text = obj.Name;
-            itemTextBox.SetActive(true);
+            // REMEMBER TO DECOMMENT itemTextBox.GetComponent<TextMeshProUGUI>().text = obj.Name;
+            // REMEMBER TO DECOMMENT itemTextBox.SetActive(true);
             canInteract = true;
         }
     }
@@ -138,6 +133,8 @@ public class Player : MonoBehaviour, IDamageable
             canInteract = false;
         }
     }
+
+    //make everyting async!!!
 
     private IEnumerator TurnRed()
     {
