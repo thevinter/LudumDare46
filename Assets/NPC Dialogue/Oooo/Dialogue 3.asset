@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue 3
   m_EditorClassIdentifier: 
-  stateIndex: 0
+  stateIndex: 2
   dialogueOptions:
-  - You already talked to me once
-  - Stop disturbing my sleep!
-  nextState: {fileID: 0}
+  - Ehhh I guess you have to open the door
+  nextState: {fileID: 11400000, guid: 06eac296cd542024cbd7d056364ebc93, type: 2}
   questReward: {fileID: 0}
   autoAdvance: 0
