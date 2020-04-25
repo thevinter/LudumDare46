@@ -24,6 +24,11 @@ public class State : ScriptableObject
         hasTalkedAlready = state;
     }
 
+    /// <summary>
+    /// This method returns the next State based on whether the current Quest is completed. If there is no current quest then State
+    /// is considered to be on "Auto Advance" and proceeds to the next state whenever the Next State is asked.
+    /// </summary>
+    /// <returns></returns>
     public State NextState() {
 
         hasTalkedAlready = true;
