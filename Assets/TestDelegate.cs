@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TestDelegate : MonoBehaviour
 {
-    public delegate void DoorDelegate();
-    public DoorDelegate doorOpen; 
+    public void Start() {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("door opened");
-        if(doorOpen != null) doorOpen();
+        EventManager.current.DOOR_OPEN_EVENT();
     }
 }

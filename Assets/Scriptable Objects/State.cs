@@ -20,7 +20,7 @@ public class State : ScriptableObject
         return hasTalkedAlready;
     }   
 
-    public void setTalked(bool state) {
+    public void SetTalked(bool state) {
         hasTalkedAlready = state;
     }
 
