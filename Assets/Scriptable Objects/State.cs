@@ -20,8 +20,12 @@ public class State : ScriptableObject
         return hasTalkedAlready;
     }   
 
+    public void setTalked(bool state) {
+        hasTalkedAlready = state;
+    }
+
     public State NextState() {
-        Debug.Log("im next state");
+
         hasTalkedAlready = true;
         if (currentQuest == null) return nextStateIfTrue;
         else {

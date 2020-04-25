@@ -34,7 +34,11 @@ public class NpcOneBehaviour : MonoBehaviour, INpc, IInteractable
     }
 
     public void Start(){
+        foreach (State s in states) {
+            s.setTalked(false);
+        }
         states[2].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
+        states[5].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
         test.doorOpen += OnDoorOpen;
         currentState = states[0];
         

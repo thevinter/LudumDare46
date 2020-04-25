@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
-  m_Name: Dialogue 4
+  m_Name: Dialogue5
   m_EditorClassIdentifier: 
-  stateIndex: 3
+  stateIndex: 5
   dialogueOptions:
-  - "Culo\t\t"
-  - Cacca
-  nextStateIfTrue: {fileID: 11400000}
+  - Please open the door first
+  - '
+
+'
+  nextStateIfTrue: {fileID: 11400000, guid: b6a760c2b6a39d44db129ff66da672a3, type: 2}
   nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}
