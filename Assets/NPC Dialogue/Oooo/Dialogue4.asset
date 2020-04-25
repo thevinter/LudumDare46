@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue4
   m_EditorClassIdentifier: 
-  stateIndex: 4
-  dialogueOptions:
-  - Let's talk business then
-  nextStateIfTrue: {fileID: 11400000}
-  nextStateIfFalse: {fileID: 11400000}
+  stateIndex: 0
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

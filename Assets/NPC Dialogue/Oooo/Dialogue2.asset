@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue2
   m_EditorClassIdentifier: 
-  stateIndex: 2
-  dialogueOptions:
-  - Ehhh I guess you have to open the door
-  nextStateIfTrue: {fileID: 11400000, guid: 06eac296cd542024cbd7d056364ebc93, type: 2}
-  nextStateIfFalse: {fileID: 11400000, guid: 32cd927fc716df243b41c9db48882e8a, type: 2}
+  stateIndex: 0
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
-  stateIndex: 1
-  dialogueOptions:
-  - You already talked to me once
-  - Stop disturbing my sleep!
-  nextStateIfTrue: {fileID: 11400000, guid: 173bc64aa1bd69b47a149813f4cf00bd, type: 2}
-  nextStateIfFalse: {fileID: 11400000}
+  stateIndex: 0
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue5
   m_EditorClassIdentifier: 
-  stateIndex: 5
-  dialogueOptions:
-  - Please open the door first
-  - '
-
-'
-  nextStateIfTrue: {fileID: 11400000, guid: b6a760c2b6a39d44db129ff66da672a3, type: 2}
-  nextStateIfFalse: {fileID: 11400000}
+  stateIndex: 0
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

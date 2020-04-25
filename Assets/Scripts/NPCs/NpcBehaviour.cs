@@ -27,12 +27,8 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
     /// next state *before* displaying the dialogue
     /// </summary>
     public void Speak(){
-        if (currentState.HasTalkedAlready()) {
-            print(currentState.HasTalkedAlready());
             currentState = currentState.NextState();
-        }
-        PrintString(currentState.dialogueOptions);
-        currentState = currentState.NextState();
+            PrintString(currentState.dialogueOptions);
     }
 
     public void Start() { 

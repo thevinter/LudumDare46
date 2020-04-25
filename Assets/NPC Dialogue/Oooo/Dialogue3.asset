@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b259a72836e954aab4d75cfbbbcca9, type: 3}
   m_Name: Dialogue3
   m_EditorClassIdentifier: 
-  stateIndex: 3
-  dialogueOptions:
-  - Wtf you already did it!
-  - Cacca
-  nextStateIfTrue: {fileID: 11400000, guid: 4fb4e8c36be4a9e468b5b8ba6f6b8fb7, type: 2}
-  nextStateIfFalse: {fileID: 11400000}
+  stateIndex: 0
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

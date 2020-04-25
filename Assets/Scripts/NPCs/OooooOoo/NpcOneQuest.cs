@@ -22,7 +22,9 @@ public class NpcOneQuest : MonoBehaviour, INpcQuestManager
 
     public void QuestSetUp() {
         EventManager.current.OnDoorOpen += OnDoorOpen;
-        states[2].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
-        states[5].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
+        states[1].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
+        states[3].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
+        states[6].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
+
     }
 }

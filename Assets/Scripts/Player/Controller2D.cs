@@ -3,18 +3,13 @@ using System.Collections;
 
 public class Controller2D : MonoBehaviour
 {
-
-    public float maxSlopeAngle = 80;
-
     [HideInInspector]
-    public Vector2 playerInput;
     private Rigidbody2D rb;
     public LayerMask mask;
 
     public void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     public void Move(Vector2 moveAmount)
@@ -22,6 +17,12 @@ public class Controller2D : MonoBehaviour
         Move(moveAmount);
     }
 
+
+    /// <summary>
+    /// Moves the character based on the input
+    /// </summary>
+    /// <param name="moveAmount">The direction of the movement</param>
+    /// <param name="speed">The speed of the movement</param>
     public void Move(Vector3 moveAmount, float speed)
     {
         rb.MovePosition(
@@ -47,11 +48,9 @@ public class Controller2D : MonoBehaviour
 
     }
 
-   public void Dash(Vector3 moveAmount)
-    {
+    public void Dash(Vector3 moveAmount) {
         float dashDistance = 1f;
         Vector3 dist = CanMove(moveAmount, dashDistance);
         transform.position += dist;
     }
-
 }

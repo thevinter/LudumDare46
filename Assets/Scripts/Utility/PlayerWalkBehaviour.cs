@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerWalkBehaviour : StateMachineBehaviour
 {
     Player p;
-    Rigidbody2D playerRb;
     PlayerInput pi;
     float lastX, lastY;
     public AudioClip bonfireStart;
@@ -15,7 +14,6 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         p = animator.GetComponent<Player>();
-        playerRb = animator.GetComponent<Rigidbody2D>();
         lastX = p.transform.position.x;
         lastY = p.transform.position.y;
         pi = p.GetComponent<PlayerInput>();

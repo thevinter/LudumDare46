@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue0
   m_EditorClassIdentifier: 
   stateIndex: 0
-  dialogueOptions:
-  - OOOooooooooooooooooOOO
-  - Hello you're finally awake, I was waiting for your arrival for a very long time
-  nextStateIfTrue: {fileID: 11400000, guid: 0cbf9bf4b130ade4b90d6762340ef200, type: 2}
-  nextStateIfFalse: {fileID: 11400000}
+  dialogueOptions: []
+  nextStateIfTrue: {fileID: 0}
+  nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

@@ -31,8 +31,8 @@ public class RoomTransfer : MonoBehaviour
         {
             canTeleport = false;
             StartCoroutine(Teleport());
-            cam.minPos += cameraChange;
-            cam.maxPos += cameraChange;
+            //cam.minPos += cameraChange;
+            //cam.maxPos += cameraChange;
             collision.transform.position += playerChange;            
         }
     }
