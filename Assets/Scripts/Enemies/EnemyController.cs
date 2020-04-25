@@ -1,16 +1,16 @@
 ﻿using ChrisTutorials.Persistent;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IDamageable, ISpawnable
+public class EnemyController : MonoBehaviour, IDamageable
 {
 
     public int Health { get => health; set => throw new System.NotImplementedException(); }
     public RoomManager Room { get => room; set => room=value; }
 
     public RoomManager room;
-    private GameObject player;
     public int chaseDistance;
     public int health = 20;
     public float speed;
@@ -20,7 +20,6 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawnable
     public int damage = 10;
     public bool canAttack = true;
     public bool isAttacking = false;
-    private Renderer r;
     public AudioClip[] monsterDamage;
 
     public void StartAttacking(bool status, GameObject target)
@@ -32,39 +31,14 @@ public class EnemyController : MonoBehaviour, IDamageable, ISpawnable
     public void Damage(int damage)
     {
         AudioManager.Instance.Play(monsterDamage[Random.Range(0,monsterDamage.Length)], gameObject.transform, .05f, 2f);
-        StartCoroutine(TurnRed());
+        _ = TurnRed();
         health -= damage;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        player = GameObject.FindGameObjectWithTag("Player");
-        Increment();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private IEnumerator TurnRed()
+    private async Task TurnRed()
     {
         this.gameObject.GetComponent<Renderer>().material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        await Task.Delay(100); 
         this.gameObject.GetComponent<Renderer>().material.color = Color.white;
-    }
-
-    public void Decrement()
-    {
-        room.deleteMonster();
-    }
-
-    public void Increment()
-    {
-        
-        room.addMonster();
     }
 }

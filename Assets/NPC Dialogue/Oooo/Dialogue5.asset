@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Dialogue5
   m_EditorClassIdentifier: 
   stateIndex: 0
-  dialogueOptions: []
-  nextStateIfTrue: {fileID: 0}
-  nextStateIfFalse: {fileID: 0}
+  dialogueOptions:
+  - 'culo
+
+'
+  nextStateIfTrue: {fileID: 11400000}
+  nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}

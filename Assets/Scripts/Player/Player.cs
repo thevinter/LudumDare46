@@ -172,7 +172,7 @@ public class Player : MonoBehaviour, IDamageable
         if (canDamage) {
             AudioManager.Instance.Play(playerDamage[Random.Range(0,playerDamage.Length-1)], transform);
             canDamage = false;
-            shake.shake = 0.5f;
+            //shake.shake = 0.5f;
             StartCoroutine(TurnRed());
             StartCoroutine(Invuln());
             torch.currentFlame -= damage;

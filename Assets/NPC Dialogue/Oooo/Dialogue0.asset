@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateIndex: 0
   dialogueOptions: []
-  nextStateIfTrue: {fileID: 0}
-  nextStateIfFalse: {fileID: 0}
+  nextStateIfTrue: {fileID: 11400000, guid: 05118b4b90ec9594a806e4cfdf48d20a, type: 2}
+  nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}

@@ -11,14 +11,12 @@ public class CameraFollow : MonoBehaviour
 
     //public Vector2 maxPos;
     //public Vector2 minPos;
-    private void Start()
-    {
+    private void Start(){
         p = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player = p.gameObject.transform;
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         Vector3 desiredPosition = player.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;

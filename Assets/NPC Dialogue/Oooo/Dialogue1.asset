@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
   stateIndex: 0
-  dialogueOptions: []
-  nextStateIfTrue: {fileID: 0}
-  nextStateIfFalse: {fileID: 0}
+  dialogueOptions:
+  - Hello
+  - I'm just an npc
+  nextStateIfTrue: {fileID: 11400000, guid: 30f3144f7ba618249839bbfce43bbee9, type: 2}
+  nextStateIfFalse: {fileID: 11400000, guid: cdf5106a148955349a944e8bc6d91bcd, type: 2}
   questReward: {fileID: 0}

@@ -16,6 +16,7 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
     private bool isTalking = false;
     private State currentState;
 
+    private int letterDelay = 40;
 
     private void Update() {
         print(WorldState.isDoorOpen);
@@ -31,7 +32,7 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
             PrintString(currentState.dialogueOptions);
     }
 
-    public void Start() { 
+    public void Start(){ 
         questManager = GetComponent<INpcQuestManager>();
         states = questManager.States;
         currentState = states[0];
@@ -41,24 +42,29 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
     /// Method of the Interactable Interface
     /// </summary>
     /// <param name="p">The Player GameObject</param>
-    public void Interact(Player p)
-    {
-        if (!isTalking)Speak();
+    public void Interact(Player p){
+        if (!isTalking) Speak();
+        else letterDelay = 0;
     }
 
-    private async void PrintString(string[] sentences)
-    {   
+    /// <summary>
+    /// This method prints all the array of sentences for the current State of the NPC. It currently waits 40ms between letters
+    /// and 1000ms between phrases
+    /// </summary>
+    /// <param name="sentences">A list of sentences to say</param>
+    private async void PrintString(string[] sentences){   
         int stringindex = 0;
         isTalking = true;
-        while (stringindex < sentences.Length) {
+        while (stringindex < sentences.Length){
             int charindex = 0;
             string s = sentences[stringindex];
             char[] chars = s.ToCharArray();
-            while (questManager.QuestText.text.Length < s.Length) {
+            while (questManager.QuestText.text.Length < s.Length){
                 questManager.QuestText.text += chars[charindex];
                 charindex++;
-                await Task.Delay(40);
+                await Task.Delay(letterDelay);
             }
+            letterDelay = 40;
             stringindex++;
             await Task.Delay(1000);
             questManager.QuestText.text = "";

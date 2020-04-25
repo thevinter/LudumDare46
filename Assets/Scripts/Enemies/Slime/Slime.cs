@@ -1,40 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Slime : EnemyController
-{
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (health < 0)
-        {
-            Decrement();
+public class Slime : EnemyController{
+    void Update(){
+        if (health < 0){
             AudioController.PlaySound("enemyDeath");
             gameObject.SetActive(false);
-            //Destroy(this.gameObject.GetComponent<Collider2D>());
-            //Destroy(this.gameObject, 0.8f);
         }
-        if (canAttack && isAttacking)
-        {
+        if (canAttack && isAttacking){
             target.GetComponent<IDamageable>().Damage(damage);
             canAttack = false;
-            StartCoroutine(Attack());
+            _ = Attack();
         }
     }
 
-    IEnumerator Attack()
-    {
-
-        yield return new WaitForSeconds(.4f);
+    async Task Attack(){
+        await Task.Delay(400);
         canAttack = true;
-
     }
 }

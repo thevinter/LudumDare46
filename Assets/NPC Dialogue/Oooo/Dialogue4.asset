@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Dialogue4
   m_EditorClassIdentifier: 
   stateIndex: 0
-  dialogueOptions: []
-  nextStateIfTrue: {fileID: 0}
-  nextStateIfFalse: {fileID: 0}
+  dialogueOptions:
+  - wtf you already opened it
+  nextStateIfTrue: {fileID: 11400000, guid: 27828ac76abd45640af9910ea1d5d2cc, type: 2}
+  nextStateIfFalse: {fileID: 11400000, guid: 27828ac76abd45640af9910ea1d5d2cc, type: 2}
   questReward: {fileID: 0}

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Dialogue2
   m_EditorClassIdentifier: 
   stateIndex: 0
-  dialogueOptions: []
-  nextStateIfTrue: {fileID: 0}
-  nextStateIfFalse: {fileID: 0}
+  dialogueOptions:
+  - Can you open the door?
+  - Please
+  nextStateIfTrue: {fileID: 11400000, guid: a177fd7b8bbb35242b5ca21d2402a217, type: 2}
+  nextStateIfFalse: {fileID: 11400000, guid: a177fd7b8bbb35242b5ca21d2402a217, type: 2}
   questReward: {fileID: 0}
