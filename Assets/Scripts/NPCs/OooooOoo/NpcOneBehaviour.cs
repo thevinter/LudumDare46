@@ -20,21 +20,21 @@ public class NpcOneBehaviour : MonoBehaviour, INpc, IInteractable
     
     private State currentState;
 
+    private void Update() {
+        print(currentState.HasTalkedAlready());
+    }
 
     public void Speak(){
+        if (currentState.HasTalkedAlready()) {
+            print(currentState.HasTalkedAlready());
+            currentState = currentState.NextState();
+        }
         PrintString(currentState.dialogueOptions);
-        if (currentState.questReward != null)
-        {
-            //player.give(currentState.questReward)
-        }
-        //print(currentState.nextState);
-        if (currentState.IsCompleted(() => WorldState.isDoorOpen) && currentState.nextState != null) {
-            currentState = currentState.nextState;
-        }
+        currentState = currentState.NextState();
     }
 
     public void Start(){
-        states[2].currentQuest = new SampleQuest();
+        states[2].currentQuest = new Quest(null, p => WorldState.isDoorOpen);
         test.doorOpen += OnDoorOpen;
         currentState = states[0];
         

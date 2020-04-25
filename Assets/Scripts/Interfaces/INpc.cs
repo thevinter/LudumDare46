@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface INpc
+public interface INpc
 {
     string Name { get; set; }
     State[] States { get; set; }

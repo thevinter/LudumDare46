@@ -16,6 +16,6 @@ MonoBehaviour:
   dialogueOptions:
   - You already talked to me once
   - Stop disturbing my sleep!
-  nextState: {fileID: 11400000, guid: 173bc64aa1bd69b47a149813f4cf00bd, type: 2}
+  nextStateIfTrue: {fileID: 11400000, guid: 173bc64aa1bd69b47a149813f4cf00bd, type: 2}
+  nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}
-  autoAdvance: 1

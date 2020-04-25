@@ -16,6 +16,6 @@ MonoBehaviour:
   dialogueOptions:
   - OOOooooooooooooooooOOO
   - Hello you're finally awake, I was waiting for your arrival for a very long time
-  nextState: {fileID: 11400000, guid: 0cbf9bf4b130ade4b90d6762340ef200, type: 2}
+  nextStateIfTrue: {fileID: 11400000, guid: 0cbf9bf4b130ade4b90d6762340ef200, type: 2}
+  nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}
-  autoAdvance: 1

@@ -766,7 +766,6 @@ GameObject:
   - component: {fileID: 1168871330}
   - component: {fileID: 1168871333}
   - component: {fileID: 1168871332}
-  - component: {fileID: 1168871331}
   m_Layer: 5
   m_Name: NPCDialogue
   m_TagString: Untagged
@@ -793,18 +792,6 @@ RectTransform:
   m_AnchoredPosition: {x: 55, y: -294}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1168871331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168871329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40c1d62cefa2994bb50f7120f92af67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1168871332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +1213,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3689535, y: 1.8439398}
   m_EdgeRadius: 0
---- !u!43 &1807804470
+--- !u!43 &1822322130
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1982,8 +1969,8 @@ MonoBehaviour:
   - {x: 51, y: 39.021767, z: 0}
   - {x: 40.985954, y: 39.003643, z: 0}
   m_ShapePathHash: 1742123124
-  m_Mesh: {fileID: 1807804470}
-  m_InstanceId: 17172
+  m_Mesh: {fileID: 1822322130}
+  m_InstanceId: 17206
 --- !u!1839735485 &4317345981291571855
 Tilemap:
   m_ObjectHideFlags: 0

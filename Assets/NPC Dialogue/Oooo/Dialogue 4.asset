@@ -16,6 +16,6 @@ MonoBehaviour:
   dialogueOptions:
   - "Culo\t\t"
   - Cacca
-  nextState: {fileID: 0}
+  nextStateIfTrue: {fileID: 11400000}
+  nextStateIfFalse: {fileID: 11400000}
   questReward: {fileID: 0}
-  autoAdvance: 0

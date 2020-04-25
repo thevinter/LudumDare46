@@ -1,7 +1,20 @@
-﻿public class Quest
+﻿using System;
+using UnityEngine;
+
+public class Quest
 {
-    public virtual bool IsCompleted() {
-        return true;
+    private Func<Player, bool> CompleteQuest;
+    private Player p;
+    int nextStateIfTrue, nextStateIfFalse;
+
+
+    public Quest(Player p, Func<Player, bool> quest) {
+        CompleteQuest = quest;
+        this.p = p;
+    } 
+
+    public bool IsCompleted() {
+        return CompleteQuest(p);
     }
     
 }
