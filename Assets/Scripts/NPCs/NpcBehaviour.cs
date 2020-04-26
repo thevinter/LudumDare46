@@ -64,9 +64,9 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
                 charindex++;
                 await Task.Delay(letterDelay);
             }
-            letterDelay = 40;
             stringindex++;
             await Task.Delay(1000);
+            letterDelay = 40;
             questManager.QuestText.text = "";
         }
         isTalking = false;

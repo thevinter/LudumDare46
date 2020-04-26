@@ -1,69 +1,114 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TMPro;
 using ChrisTutorials.Persistent;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
-public class Player : MonoBehaviour, IDamageable
-{
-    public float moveSpeed = 6;
+public enum PlayerState {
+    idle,
+    resting,
+    attacking,
+    dashing,
+    pause,
+    interacting,
+}
+
+public class Player : MonoBehaviour, IDamageable {
+    public FloatVariable moveSpeed;
+    private Vector2 directionalInput;
 
     public bool tutorial = false;
     public bool canInteract = false;
-    public PlayerTorch torch;
-    public Controller2D controller;
-    public PlayerShoot shoot;
-    public IInteractable obj;
-    public bool isResting = false;
-    private CameraShake shake;
+    private bool isResting = false;
     private bool canDamage = true;
-    private PlayerAnimator anim;
-    public AudioClip[] playerDamage; 
-    public GameObject itemTextBox;
-    private Renderer r;
-    public AudioClip[] steps;
-    bool canPlaySound = true;
-    public AudioClip moveStart;
-    public Vector2 directionalInput;
-    public Image img;
-    public AudioClip playerDeath;
     private bool gameOver = false;
-    public int Health { get => (int)torch.currentFlame; set => throw new System.NotImplementedException(); }
+    bool canPlaySound = true;
+
+    private PlayerFlame flame;
+    private Controller2D controllerScript;
+    private PlayerShoot shootScript;
+    private CameraShake shake = null;
+    private IInteractable obj;
+    private PlayerAnimator anim;
+    private Renderer r;
+
+    public bool resetSpeed;
+
+    //Things to remove
+    public AudioClip[] playerDamage;
+    public GameObject itemTextBox;
+    public AudioClip playerDeath;
+    public AudioClip[] steps;
+    public AudioClip moveStart;
+    public Image img;
+ 
 
 
-
-    public void Die()
-    {
-        if (!gameOver)
-        {
+    public int Health { get => (int)flame.GetCurrentFlame(); set => throw new System.NotImplementedException(); }
+    public Vector2 DirectionalInput { get => directionalInput; set { } }
+    /// <summary>
+    /// Function that is called when the player dies 
+    /// </summary>
+    public void Die() {
+        if (!gameOver) {
             AudioManager.Instance.Play(playerDeath, transform, .1f);
             gameOver = true;
         }
-        StartCoroutine(FadeImage(false, true));       
+        StartCoroutine(FadeImage(false, true));
     }
 
-    IEnumerator FadeImage(bool fadeAway, bool gameOver = false)
-    {
+    private void Awake() {
+        //GameInstance.Instance.SetPlayer(this);
+        if (resetSpeed)
+            moveSpeed.SetValue(moveSpeed.Value);
+    }
+
+    public void SetResting(bool state) {
+        isResting = state;
+    }
+
+    public bool GetResting() {
+        return isResting;
+    }
+
+    /// <summary>
+    /// Sends the shoot comand to the ShootScript based on the horizontal and on the vertical input
+    /// </summary>
+    /// <param name="hor">The horizontal direction of shooting</param>
+    /// <param name="ver">The vertical direction of shooting</param>
+    public void Shoot(float hor, float ver) {
+        shootScript.Shoot(hor, ver);
+    }
+
+    /// <summary>
+    /// Sets if the torch has to be consumed overtime or not
+    /// </summary>
+    /// <param name="state">True if the torch has to be consumed overtime, false otherwhise</param>
+    public void SetConsumingTorch(bool state) {
+        flame.SetConsuming(state);
+    }
+
+
+    /// <summary>
+    /// IEnumerator that allows the fade of an Image. It shouldn't be here but rather in a separate UI script
+    /// </summary>
+    /// <param name="fadeAway"></param>
+    /// <param name="gameOver"></param>
+    /// <returns></returns>
+    IEnumerator FadeImage(bool fadeAway, bool gameOver = false) {
         // fade from opaque to transparent
-        if (fadeAway)
-        {
+        if (fadeAway) {
             // loop over 1 second backwards
-            for (float i = 1; i >= 0; i -= Time.deltaTime)
-            {
+            for (float i = 1; i >= 0; i -= Time.deltaTime) {
                 // set color with i as alpha
                 //img.color = new Color(0, 0, 0, i);
                 yield return null;
             }
-            
         }
         // fade from transparent to opaque
-        else
-        {
-
+        else {
             // loop over 1 second
-            for (float i = 0; i <= 2; i += Time.deltaTime)
-            {
+            for (float i = 0; i <= 2; i += Time.deltaTime) {
                 // set color with i as alpha
                 //img.color = new Color(0, 0, 0, i);
                 yield return null;
@@ -72,45 +117,61 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-
-
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         if(!isResting)
-            controller.Move(directionalInput.normalized, moveSpeed);
+            controllerScript.Move(directionalInput.normalized, 6);
         Step();
     }
 
-
-    public void SetRestState(bool rest)
-    {
+    /// <summary>
+    /// Puts the character into a resting state and fills its torch
+    /// </summary>
+    /// <param name="rest">Whether the character is resting or not</param>
+    public void SetRestState(bool rest) {
         isResting = rest;
-        //fai robe animazione e musica
-        if (isResting)
-        {
-            torch.Fill();
+        if (isResting) {
+            flame.Fill();
         }
     }
 
-    void Start()
-    {
+    void Start() {
         if(!tutorial) StartCoroutine(FadeImage(true));
-        r = GetComponent<Renderer>();
-        anim = GetComponent<PlayerAnimator>();
-        controller = GetComponent<Controller2D>();
-        shoot = GetComponent<PlayerShoot>();
-        torch = GetComponent<PlayerTorch>();
-        if(!tutorial) shake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
+        GetComponents();
     }
 
-    public void Interact()
-    {
+    /// <summary>
+    /// Finds and initializes all the necessary components
+    /// </summary>
+    private void GetComponents() {
+        r = GetComponent<Renderer>();
+        anim = GetComponent<PlayerAnimator>();
+        controllerScript = GetComponent<Controller2D>();
+        shootScript = GetComponent<PlayerShoot>();
+        flame = GetComponent<PlayerFlame>();
+        if (!tutorial) shake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
+    }
+
+    /// <summary>
+    /// Interacts with the current interactable object
+    /// </summary>
+    public void Interact() {
         obj.Interact(this);
     }
 
-    public void SetDirectionalInput(Vector2 input)
-    {
+    /// <summary>
+    /// Sets the player's movement direction
+    /// </summary>
+    /// <param name="input">The direction the player is moving towards</param>
+    public void SetDirectionalInput(Vector2 input) {
         directionalInput = input;
+    }
+
+    /// <summary>
+    /// Recharghes the player's torch
+    /// </summary>
+    /// <param name="amount"></param>
+    public void RechargeTorch(int amount) {
+        flame.Recharge(amount);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -124,58 +185,53 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Usable"))
-        {
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Interactable")) {
             itemTextBox.SetActive(false);
             obj = null;
             canInteract = false;
         }
     }
 
-    //make everyting async!!!
-
-    private IEnumerator TurnRed()
-    {
+    private async Task TurnRed() {
         r.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        await Task.Delay(100);
         r.material.color = Color.white;
     }
-    public void AddWeapon(GameObject weapon)
-    {
-        shoot.SetWeapon(weapon);
+
+    public void AddWeapon(GameObject weapon) {
+        shootScript.SetWeapon(weapon);
     }
-    private IEnumerator Invuln()
-    {
-        yield return new WaitForSeconds(.5f);
+
+    private async Task Invuln() {
+        await Task.Delay(500);
         canDamage = true;
     }
 
-    private IEnumerator SoundTimer() {
-        yield return new WaitForSeconds(7.5f);
+    private async Task SoundTimer() {
+        await Task.Delay(7500);
         canPlaySound = true;
     }
 
+    //This works but needs to be reworked because it was a hack for the LD
     public void Step() {
-        if (canPlaySound)
-        {
+        if (canPlaySound){
             canPlaySound = false;
-            StartCoroutine(SoundTimer());
+            _ = SoundTimer();
             AudioClip stepSound = steps[Random.Range(0, steps.Length - 1)];
             AudioManager.Instance.Play(stepSound, transform, .2f);
         }
     }
 
-    public void Damage(int damage)
-    {
+    
+    public void Damage(int damage) {
         if (canDamage) {
             AudioManager.Instance.Play(playerDamage[Random.Range(0,playerDamage.Length-1)], transform);
             canDamage = false;
-            //shake.shake = 0.5f;
-            StartCoroutine(TurnRed());
-            StartCoroutine(Invuln());
-            torch.currentFlame -= damage;
+            shake.shake = 0.5f;
+            _ = TurnRed();
+            _ = Invuln();
+            flame.ReduceCurrentFlame(damage);
         }
     }
 }

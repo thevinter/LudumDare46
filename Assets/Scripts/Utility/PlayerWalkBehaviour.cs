@@ -24,7 +24,7 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bool input = p.directionalInput.x != 0 || p.directionalInput.y != 0;
+        bool input = p.DirectionalInput.x != 0 || p.DirectionalInput.y != 0;
         float movementX = Mathf.Abs(animator.transform.position.x - lastX);
         float movementY = Mathf.Abs(animator.transform.position.y - lastY);
         bool movement = movementX != 0 && movementY != 0;
@@ -32,15 +32,15 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
         animator.SetBool("isWalking", input && movement);
         animator.SetBool("isAttacking", (pi.shootHorizontal != 0 || pi.shootVertical != 0));
 
-        if(Mathf.Abs(p.directionalInput.x) == Mathf.Abs(p.directionalInput.y))
+        if(Mathf.Abs(p.DirectionalInput.x) == Mathf.Abs(p.DirectionalInput.y))
         {
             animator.SetFloat("velocityX", 0);
-            animator.SetFloat("velocityY", p.directionalInput.y);
+            animator.SetFloat("velocityY", p.DirectionalInput.y);
         }
         else
         {
-            animator.SetFloat("velocityX", p.directionalInput.x);
-            animator.SetFloat("velocityY", p.directionalInput.y);
+            animator.SetFloat("velocityX", p.DirectionalInput.x);
+            animator.SetFloat("velocityY", p.DirectionalInput.y);
         }
 
         lastX = p.transform.position.x;

@@ -40,7 +40,7 @@ public class PlayerInput : MonoBehaviour
         shootVertical = Input.GetAxisRaw("ShootVertical");
         if((shootHorizontal != 0 || shootVertical != 0))
         {
-            player.shoot.Shoot(shootHorizontal, shootVertical);
+            player.Shoot(shootHorizontal, shootVertical);
         }
     }
 

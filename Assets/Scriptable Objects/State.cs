@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Dialogue", order = 1)]
+[CreateAssetMenu(fileName = "State", menuName = "ScriptableObjects/Dialogue", order = 1)]
 public class State : ScriptableObject
 {
     public int stateIndex;

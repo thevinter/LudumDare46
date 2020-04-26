@@ -18,8 +18,8 @@ public class PlayerAttackBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isIdle", !(p.directionalInput.x != 0 || p.directionalInput.y != 0));
-        animator.SetBool("isWalking", p.directionalInput.x != 0 || p.directionalInput.y != 0);
+        animator.SetBool("isIdle", !(p.DirectionalInput.x != 0 || p.DirectionalInput.y != 0));
+        animator.SetBool("isWalking", p.DirectionalInput.x != 0 || p.DirectionalInput.y != 0);
         animator.SetBool("isAttacking", pi.shootHorizontal != 0 || pi.shootVertical != 0);
     }
 

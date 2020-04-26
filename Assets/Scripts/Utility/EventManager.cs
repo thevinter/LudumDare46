@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager current;
-    
+    public static EventManager Instance { get; private set; }
+
     public void Awake() {
-        current = this;
+        if (Instance != null && Instance != this) {
+            Destroy(this.gameObject);
+        }
+        else {
+            Instance = this;
+        }
     }
 
     public event Action OnDoorOpen;

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Needs a rework
 public class Bonfire : MonoBehaviour, IInteractable
 {
     public string Name { get => objectName; set => throw new System.NotImplementedException(); }
@@ -15,13 +17,12 @@ public class Bonfire : MonoBehaviour, IInteractable
     private bool isLit =false;
     public float desiredRange;
 
-    private void Start()
-    {
+    private void Start() {
         l = GetComponentInChildren<Light>();
         anim = GetComponent<Animator>();
     }
-    public void Interact(Player p)
-    {
+
+    public void Interact(Player p) {
         if (!isLit)
         {
             isLit = true;
@@ -30,7 +31,7 @@ public class Bonfire : MonoBehaviour, IInteractable
             LightUp();
         }
         isSitting = !isSitting;
-        p.torch.SetConsuming(!isSitting);
+        p.SetConsumingTorch(!isSitting);
         p.SetRestState(isSitting);
         print("Im sitting: " + isSitting);
         
@@ -40,21 +41,16 @@ public class Bonfire : MonoBehaviour, IInteractable
         
     }
 
-    void LightUp()
-    {
-        while(l.range < desiredRange)
-        {
+    void LightUp() {
+        while(l.range < desiredRange) {
             l.range += 0.2f;
         }
     }
 
-    void Update()
-    {
-        if (isLit)
-        {
+    void Update() {
+        if (isLit) {
             float desiredRange = Random.Range(8f, 12f);
             l.range = Mathf.Lerp(l.range, desiredRange, .2f);
         }
-       
     }
 }

@@ -22,21 +22,18 @@ public class EnemyController : MonoBehaviour, IDamageable
     public bool isAttacking = false;
     public AudioClip[] monsterDamage;
 
-    public void StartAttacking(bool status, GameObject target)
-    {
+    public void StartAttacking(bool status, GameObject target) {
         this.target = target;
         isAttacking = status;
     }
 
-    public void Damage(int damage)
-    {
+    public void Damage(int damage) {
         AudioManager.Instance.Play(monsterDamage[Random.Range(0,monsterDamage.Length)], gameObject.transform, .05f, 2f);
         _ = TurnRed();
         health -= damage;
     }
 
-    private async Task TurnRed()
-    {
+    private async Task TurnRed() {
         this.gameObject.GetComponent<Renderer>().material.color = Color.red;
         await Task.Delay(100); 
         this.gameObject.GetComponent<Renderer>().material.color = Color.white;

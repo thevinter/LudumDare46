@@ -12,9 +12,9 @@ public class Controller2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the character based on an input and a speed
+    /// Moves the character based on an input
     /// </summary>
-    /// <param name="moveAmount"></param>
+    /// <param name="moveAmount">The direction of the movement</param>
     public void Move(Vector2 moveAmount){
         Move(moveAmount);
     }
@@ -49,7 +49,7 @@ public class Controller2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Allows the player to dash
+    /// Translates the player in a direction simulating a dash
     /// </summary>
     /// <param name="moveAmount">The amount of movement</param>
     public void Dash(Vector3 moveAmount) {

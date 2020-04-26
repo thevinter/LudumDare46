@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+//THIS HAS TO BE REWORKED WITH EVENTS AND SHIT
 public class MainMenuScript : MonoBehaviour
 {
     GameObject p;
@@ -32,10 +32,7 @@ public class MainMenuScript : MonoBehaviour
     void Start()
     {
         p = GameObject.FindGameObjectWithTag("Player");
-        p.GetComponent<Player>().isResting = true;
-        //
-
-
+        p.GetComponent<Player>().SetResting(true);
     }
 
     IEnumerator ShowTutorial(string prompt)
@@ -43,7 +40,7 @@ public class MainMenuScript : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         Camera.main.GetComponent<CameraFollow>().smoothSpeed = 0.125f;
-        p.GetComponent<Player>().isResting = false;
+        p.GetComponent<Player>().SetResting(false);
         p.GetComponent<Animator>().SetBool("isIdle", true); 
         tutorial.text = prompt;
         StartCoroutine(FadeIn(tutorial));
