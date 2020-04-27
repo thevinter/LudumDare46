@@ -4,6 +4,7 @@ using ChrisTutorials.Persistent;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using UnityEditor.Animations;
+using UnityEngine.Events;
 
 public enum PlayerState {
     idle,
@@ -17,6 +18,7 @@ public enum PlayerState {
 public class Player : MonoBehaviour, IDamageable {
     public FloatVariable moveSpeed;
     private Vector2 directionalInput;
+    public UnityEvent deathEvent;
 
     public bool tutorial = false;
     public bool canInteract = false;
@@ -29,9 +31,9 @@ public class Player : MonoBehaviour, IDamageable {
     private Controller2D controllerScript;
     private PlayerShoot shootScript;
     private CameraShake shake = null;
-    private IInteractable obj;
     private PlayerAnimator anim;
     private Renderer r;
+    private InteractScript inter;
 
     public bool resetSpeed;
 
@@ -44,24 +46,23 @@ public class Player : MonoBehaviour, IDamageable {
     public Image img;
  
 
-
     public int Health { get => (int)flame.GetCurrentFlame(); set => throw new System.NotImplementedException(); }
     public Vector2 DirectionalInput { get => directionalInput; set { } }
     /// <summary>
     /// Function that is called when the player dies 
     /// </summary>
     public void Die() {
-        if (!gameOver) {
-            AudioManager.Instance.Play(playerDeath, transform, .1f);
-            gameOver = true;
-        }
-        StartCoroutine(FadeImage(false, true));
+        //if (!gameOver) {
+        //    AudioManager.Instance.Play(playerDeath, transform, .1f);
+        //    gameOver = true;
+        //}
+        //StartCoroutine(FadeImage(false, true));
+        deathEvent.Invoke();
     }
 
     private void Awake() {
         //GameInstance.Instance.SetPlayer(this);
-        if (resetSpeed)
-            moveSpeed.SetValue(moveSpeed.Value);
+        moveSpeed.SetValue(moveSpeed.Value);
     }
 
     public void SetResting(bool state) {
@@ -89,38 +90,11 @@ public class Player : MonoBehaviour, IDamageable {
         flame.SetConsuming(state);
     }
 
-
-    /// <summary>
-    /// IEnumerator that allows the fade of an Image. It shouldn't be here but rather in a separate UI script
-    /// </summary>
-    /// <param name="fadeAway"></param>
-    /// <param name="gameOver"></param>
-    /// <returns></returns>
-    IEnumerator FadeImage(bool fadeAway, bool gameOver = false) {
-        // fade from opaque to transparent
-        if (fadeAway) {
-            // loop over 1 second backwards
-            for (float i = 1; i >= 0; i -= Time.deltaTime) {
-                // set color with i as alpha
-                //img.color = new Color(0, 0, 0, i);
-                yield return null;
-            }
-        }
-        // fade from transparent to opaque
-        else {
-            // loop over 1 second
-            for (float i = 0; i <= 2; i += Time.deltaTime) {
-                // set color with i as alpha
-                //img.color = new Color(0, 0, 0, i);
-                yield return null;
-            }
-            //if (gameOver) SceneManager.LoadScene("GameOver");
-        }
-    }
+    
 
     private void FixedUpdate() {
         if(!isResting)
-            controllerScript.Move(directionalInput.normalized, 6);
+            controllerScript.Move(directionalInput.normalized, moveSpeed.Value);
         Step();
     }
 
@@ -136,7 +110,6 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     void Start() {
-        if(!tutorial) StartCoroutine(FadeImage(true));
         GetComponents();
     }
 
@@ -149,6 +122,7 @@ public class Player : MonoBehaviour, IDamageable {
         controllerScript = GetComponent<Controller2D>();
         shootScript = GetComponent<PlayerShoot>();
         flame = GetComponent<PlayerFlame>();
+        inter = GetComponent<InteractScript>();
         if (!tutorial) shake = GameObject.FindGameObjectWithTag("Shake").GetComponent<CameraShake>();
     }
 
@@ -156,7 +130,7 @@ public class Player : MonoBehaviour, IDamageable {
     /// Interacts with the current interactable object
     /// </summary>
     public void Interact() {
-        obj.Interact(this);
+        inter.Interact(this);
     }
 
     /// <summary>
@@ -173,24 +147,6 @@ public class Player : MonoBehaviour, IDamageable {
     /// <param name="amount"></param>
     public void RechargeTorch(int amount) {
         flame.Recharge(amount);
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<IInteractable>() != null) {
-            obj = collision.gameObject.GetComponent<IInteractable>();
-            // REMEMBER TO DECOMMENT itemTextBox.GetComponent<TextMeshProUGUI>().text = obj.Name;
-            // REMEMBER TO DECOMMENT itemTextBox.SetActive(true);
-            canInteract = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.GetComponent<IInteractable>() != null) {
-            //itemTextBox.SetActive(false);
-            obj = null;
-            canInteract = false;
-        }
     }
 
     private async Task TurnRed() {

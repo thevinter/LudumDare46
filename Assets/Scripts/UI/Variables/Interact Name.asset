@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c56d0898464605468f659af81f79894, type: 3}
-  m_Name: DoorOpen
+  m_Script: {fileID: 11500000, guid: b13c65f4f0fda0c46ad903ef78a0b9ab, type: 3}
+  m_Name: Interact Name
   m_EditorClassIdentifier: 
-  DeveloperDescription: Test Event for door opening and npc quest progression
+  DeveloperDescription: 'This variable is used to display the name of the
+
+    object
+    the player is interacting with'
+  Value: 

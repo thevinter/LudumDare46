@@ -24,13 +24,11 @@ public class PlayerInput : MonoBehaviour
         Vector3 directionalInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
         player.SetDirectionalInput(directionalInput);
-        if (player.canInteract && Input.GetKeyDown(KeyCode.E))
-        {
+        if (Input.GetKeyDown(KeyCode.E)) {
             player.Interact();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
             isDashing = true;
             c.Dash(directionalInput);
             isDashing = await Dash();

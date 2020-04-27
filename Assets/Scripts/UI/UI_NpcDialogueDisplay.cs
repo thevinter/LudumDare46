@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class UI_NpcDialogueDisplay : MonoBehaviour
 {
     public StringVariable npcText;
@@ -11,10 +9,13 @@ public class UI_NpcDialogueDisplay : MonoBehaviour
 
     private void Start() {
         tmp = GetComponent<TextMeshProUGUI>();
+        tmp.text = "";
     }
     // Update is called once per frame
     void Update()
     {
         tmp.text = npcText.Value;
     }
+
+
 }

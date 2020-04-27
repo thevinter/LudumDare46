@@ -8,21 +8,19 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerInput playerInput;
     private Animator anim;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         player = GetComponent<Player>();
         playerInput = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         anim.SetBool("isResting", player.GetResting());
         anim.SetBool("isIdle", !(player.DirectionalInput.x != 0 || player.DirectionalInput.y != 0));
         anim.SetBool("isWalking", player.DirectionalInput.x != 0 || player.DirectionalInput.y != 0);
         anim.SetBool("isAttacking", playerInput.shootHorizontal != 0 || playerInput.shootVertical != 0);
-        anim.SetFloat("velocityX", player.DirectionalInput.x);
+        anim.SetFloat("velocityX", player.DirectionalInput.x);      
         anim.SetFloat("velocityY", player.DirectionalInput.y);
     }
 }

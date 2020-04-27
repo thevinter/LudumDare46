@@ -3,6 +3,10 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject {
+#if UNITY_EDITOR
+    [Multiline]
+    public string DeveloperDescription = "";
+#endif
     /// <summary>
     /// The list of listeners that this event will notify if it is raised.
     /// </summary>
