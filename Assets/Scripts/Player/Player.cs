@@ -31,32 +31,26 @@ public class Player : MonoBehaviour, IDamageable {
     private Controller2D controllerScript;
     private PlayerShoot shootScript;
     private CameraShake shake = null;
-    private PlayerAnimator anim;
     private Renderer r;
     private InteractScript inter;
 
     public bool resetSpeed;
 
     //Things to remove
+    //Put this into a separate Audio controller with events and stuff
     public AudioClip[] playerDamage;
-    public GameObject itemTextBox;
     public AudioClip playerDeath;
     public AudioClip[] steps;
     public AudioClip moveStart;
-    public Image img;
- 
+
 
     public int Health { get => (int)flame.GetCurrentFlame(); set => throw new System.NotImplementedException(); }
     public Vector2 DirectionalInput { get => directionalInput; set { } }
+    
     /// <summary>
     /// Function that is called when the player dies 
     /// </summary>
     public void Die() {
-        //if (!gameOver) {
-        //    AudioManager.Instance.Play(playerDeath, transform, .1f);
-        //    gameOver = true;
-        //}
-        //StartCoroutine(FadeImage(false, true));
         deathEvent.Invoke();
     }
 
@@ -118,7 +112,6 @@ public class Player : MonoBehaviour, IDamageable {
     /// </summary>
     private void GetComponents() {
         r = GetComponent<Renderer>();
-        anim = GetComponent<PlayerAnimator>();
         controllerScript = GetComponent<Controller2D>();
         shootScript = GetComponent<PlayerShoot>();
         flame = GetComponent<PlayerFlame>();

@@ -8,8 +8,7 @@ using UnityEngine;
 public class Bonfire : MonoBehaviour, IInteractable
 {
     public string Name { get => objectName; set => throw new System.NotImplementedException(); }
-    [SerializeField]
-    private string objectName = "Bonfire";
+    [SerializeField] private string objectName = "Bonfire";
     private bool isSitting = false;
     private Light l;
     private Animator anim;
@@ -36,9 +35,7 @@ public class Bonfire : MonoBehaviour, IInteractable
         print("Im sitting: " + isSitting);
         
         p.GetComponent<Animator>().SetBool("isIdle", !isSitting);
-        p.GetComponent<Animator>().SetBool("isResting", isSitting);
-
-        
+        p.GetComponent<Animator>().SetBool("isResting", isSitting);     
     }
 
     void LightUp() {

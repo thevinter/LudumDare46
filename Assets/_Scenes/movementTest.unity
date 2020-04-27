@@ -558,8 +558,8 @@ Camera:
   m_GameObject: {fileID: 1060238622}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -748,7 +748,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!43 &1091840462
+--- !u!43 &1152542767
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -991,6 +991,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
       propertyPath: totalFlame
       value: 
       objectReference: {fileID: 11400000, guid: 4a31efef777124d45bc94df2b88a1c19,
@@ -1000,6 +1004,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0c2b469370a09f2488d5d900da1b45fc,
         type: 2}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: eed792ea2e2faa346ba79f3dfc76340c,
+        type: 2}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 481246201, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
+      propertyPath: PlayerDeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 714629064, guid: 34d9ff62bb4de704f98a76d421f23812, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -1233,7 +1258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716686496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: 1.28, z: 0}
+  m_LocalPosition: {x: 0.45, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2005,8 +2030,8 @@ MonoBehaviour:
   - {x: 51, y: 39.021767, z: 0}
   - {x: 40.985954, y: 39.003643, z: 0}
   m_ShapePathHash: 1742123124
-  m_Mesh: {fileID: 1091840462}
-  m_InstanceId: 30732
+  m_Mesh: {fileID: 1152542767}
+  m_InstanceId: 33134
 --- !u!1839735485 &4317345981291571855
 Tilemap:
   m_ObjectHideFlags: 0
