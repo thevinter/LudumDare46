@@ -6,10 +6,10 @@ public class NpcOneQuest : MonoBehaviour, INpcQuestManager
 
     private bool isDoorOpen;
 
-    public TextMeshProUGUI QuestText { get => questText; set => throw new System.NotImplementedException(); }
     public State[] States { get => states; set => throw new System.NotImplementedException(); }
+    public StringVariable QuestText { get => questText; set => throw new System.NotImplementedException(); }
 
-    public TextMeshProUGUI questText;
+    public StringVariable questText;
     public State[] states;
 
     public void Start() {
@@ -24,10 +24,8 @@ public class NpcOneQuest : MonoBehaviour, INpcQuestManager
     }
 
     public void QuestSetUp() {
-        EventManager.Instance.OnDoorOpen += OnDoorOpen;
         states[1].currentQuest = new Quest(null, p => isDoorOpen);
         states[3].currentQuest = new Quest(null, p => isDoorOpen);
         states[6].currentQuest = new Quest(null, p => isDoorOpen);
-
     }
 }

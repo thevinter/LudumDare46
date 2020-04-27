@@ -3,6 +3,7 @@ using System.Collections;
 using ChrisTutorials.Persistent;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using UnityEditor.Animations;
 
 public enum PlayerState {
     idle,
@@ -176,8 +177,7 @@ public class Player : MonoBehaviour, IDamageable {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Interactable"))
-        {
+        if (collision.gameObject.GetComponent<IInteractable>() != null) {
             obj = collision.gameObject.GetComponent<IInteractable>();
             // REMEMBER TO DECOMMENT itemTextBox.GetComponent<TextMeshProUGUI>().text = obj.Name;
             // REMEMBER TO DECOMMENT itemTextBox.SetActive(true);
@@ -186,8 +186,8 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Interactable")) {
-            itemTextBox.SetActive(false);
+        if (collision.gameObject.GetComponent<IInteractable>() != null) {
+            //itemTextBox.SetActive(false);
             obj = null;
             canInteract = false;
         }

@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Float Variable", menuName = "ScriptableObjects/Variables", order = 1)]
+[CreateAssetMenu]
 public class FloatVariable : ScriptableObject {
 #if UNITY_EDITOR
     [Multiline]

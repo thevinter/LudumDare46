@@ -18,9 +18,6 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
 
     private int letterDelay = 40;
 
-    private void Update() {
-        print(WorldState.isDoorOpen);
-    }
     /// <summary>
     /// Allows the NPC to print its current state's line of dialogue and sets the current state as his next aviable state after talking
     /// 
@@ -59,15 +56,15 @@ public class NpcBehaviour : MonoBehaviour, INpc, IInteractable
             int charindex = 0;
             string s = sentences[stringindex];
             char[] chars = s.ToCharArray();
-            while (questManager.QuestText.text.Length < s.Length){
-                questManager.QuestText.text += chars[charindex];
+            while (questManager.QuestText.Value.Length < s.Length){
+                questManager.QuestText.ApplyChange(chars[charindex]);
                 charindex++;
                 await Task.Delay(letterDelay);
             }
             stringindex++;
             await Task.Delay(1000);
             letterDelay = 40;
-            questManager.QuestText.text = "";
+            questManager.QuestText.SetValue("");
         }
         isTalking = false;
     }

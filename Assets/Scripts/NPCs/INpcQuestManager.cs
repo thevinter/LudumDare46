@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public interface INpcQuestManager
 {
-    //The quest dialogue element that the NPC uses when displaying his text
-    TextMeshProUGUI QuestText { get; set; }
     State[] States { get; set; }
-
+    StringVariable QuestText { get; set; }
     /// <summary> 
     /// A method that manages all of the quests of a character. It has to:
     /// <br/> <br/> 
