@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [HideInInspector]
-    public  float shootVertical, shootHorizontal;
-    public float dashSpeed = 3;
-    public float dashTime = 2;
-    Player player;
+    public float shootVertical, shootHorizontal;
+
+
+    private Player player;
     private Controller2D c;
-    private bool isDashing = false;
+
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
         c = GetComponent<Controller2D>();
     }
 
-    async void Update()
+    void Update()
     {
         Vector3 directionalInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
 
@@ -28,10 +28,9 @@ public class PlayerInput : MonoBehaviour
             player.Interact();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
-            isDashing = true;
+        if (Input.GetKeyDown(KeyCode.Space)) {
             c.Dash(directionalInput);
-            isDashing = await Dash();
+
         }
 
         shootHorizontal = Input.GetAxisRaw("ShootHorizontal");
@@ -40,11 +39,5 @@ public class PlayerInput : MonoBehaviour
         {
             player.Shoot(shootHorizontal, shootVertical);
         }
-    }
-
-    async Task<bool> Dash()
-    {
-        await Task.Delay(1000);
-        return false;
     }
 }

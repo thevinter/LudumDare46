@@ -13,18 +13,12 @@ public class PlayerFlame : MonoBehaviour
     private float currentFlame;
     private bool isBeingConsumed = true;
 
-    //toRemove
-    public TextMeshProUGUI text;
-    public Image fillbar;
-
     private int nframes = 0;
     private float desiredIntensity = 2;
     private float desiredRange = 15;
 
-    float dampening = 100;
-
     private Player p;
-    public Light2D l;
+    [SerializeField] private Light2D l;
 
     private void Update() {
             nframes++;
@@ -34,7 +28,6 @@ public class PlayerFlame : MonoBehaviour
                 nframes = 0;
             }
 
-            if(!p.tutorial) fillbar.fillAmount = currentFlame / totalFlame.Value;
             if (p.tutorial) l.pointLightInnerRadius = desiredRange;
             if (!p.tutorial) l.intensity = desiredIntensity;
 

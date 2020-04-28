@@ -10,8 +10,8 @@ public class PlayerWalkBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         p = animator.GetComponent<Player>();
-        bonfireStart = p.moveStart;
-        AudioManager.Instance.Play(bonfireStart, animator.transform, .05f, 3f);
+        //bonfireStart = p.startMovingSound;
+        //AudioManager.Instance.Play(bonfireStart, animator.transform, .05f, 3f);
     }
 
     //// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

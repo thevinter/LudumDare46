@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Threading.Tasks;
 
 public class Controller2D : MonoBehaviour
 {
-    [HideInInspector]
+    [Tooltip("The mask used for determining the dash walls")]
+    public LayerMask dashMask;
+
     private Rigidbody2D rb;
-    public LayerMask mask;
+    private bool isDashing;
+
+    [Tooltip("The distance covered by the dash")]
+    public float dashDistance = 3;
+    [Tooltip("The time in ms between a dash")]
+    public int dashTime = 1000;
 
     public void Start(){
         rb = GetComponent<Rigidbody2D>(); 
@@ -40,8 +48,8 @@ public class Controller2D : MonoBehaviour
     private Vector3 CanMove(Vector3 dir, float dist){
         Vector3 actualMove = dir;
         Debug.DrawRay(transform.position, dir);
-        float actualDist = Physics2D.Raycast(transform.position, dir, dist, mask).distance;
-        if (Physics2D.Raycast(transform.position, dir, dist, mask) && actualDist < dist){
+        float actualDist = Physics2D.Raycast(transform.position, dir, dist, dashMask).distance;
+        if (Physics2D.Raycast(transform.position, dir, dist, dashMask) && actualDist < dist){
             print(Physics2D.Raycast(transform.position, dir, dist) );
             actualMove *= actualDist;
             return actualMove;
@@ -52,9 +60,13 @@ public class Controller2D : MonoBehaviour
     /// Translates the player in a direction simulating a dash
     /// </summary>
     /// <param name="moveAmount">The amount of movement</param>
-    public void Dash(Vector3 moveAmount) {
-        float dashDistance = 1f;
-        Vector3 dist = CanMove(moveAmount, dashDistance);
-        transform.position += dist;
+    public async void Dash(Vector3 moveAmount) {
+        if (!isDashing) {
+            isDashing = true;
+            Vector3 dist = CanMove(moveAmount, dashDistance);
+            transform.position += dist;
+            await Task.Delay(dashTime);
+            isDashing = false;
+        }
     }
 }

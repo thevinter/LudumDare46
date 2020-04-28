@@ -9,6 +9,8 @@ public class Bonfire : MonoBehaviour, IInteractable
 {
     public string Name { get => objectName; set => throw new System.NotImplementedException(); }
     [SerializeField] private string objectName = "Bonfire";
+    [SerializeField] private CoordVariable spawnCoords;
+
     private bool isSitting = false;
     private Light l;
     private Animator anim;
@@ -29,11 +31,10 @@ public class Bonfire : MonoBehaviour, IInteractable
             AudioManager.Instance.Play(bonfireSound, transform);
             LightUp();
         }
+        spawnCoords.SetValue(p.transform.position);
         isSitting = !isSitting;
         p.SetConsumingTorch(!isSitting);
-        p.SetRestState(isSitting);
-        print("Im sitting: " + isSitting);
-        
+        p.SetRestState(isSitting);        
         p.GetComponent<Animator>().SetBool("isIdle", !isSitting);
         p.GetComponent<Animator>().SetBool("isResting", isSitting);     
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 878787003}
   - component: {fileID: 878787005}
   - component: {fileID: 878787004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: shadow_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e43bfe67728a50344bea8e5563716eb6, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,6 +102,78 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1262997490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262997491}
+  - component: {fileID: 1262997492}
+  m_Layer: 9
+  m_Name: Point Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262997491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262997490}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7300223425986904398}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262997492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262997490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.854
+  m_Color: {r: 0.735849, g: 0.5658207, b: 0.35056958, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 5b5d0424e76d06443fdd0e51000000008f9dd3eda183951b8131ba41ff9903c6
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0.457
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 2.528014
+  m_PointLightOuterRadius: 5.7033906
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &7300223425986904391
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,10 +190,12 @@ GameObject:
   - component: {fileID: 7300223425986904388}
   - component: {fileID: 481246205}
   - component: {fileID: 481246195}
-  - component: {fileID: 481246194}
   - component: {fileID: 481246201}
   - component: {fileID: 481246202}
-  m_Layer: 0
+  - component: {fileID: 36260440}
+  - component: {fileID: 36260443}
+  - component: {fileID: 36260444}
+  m_Layer: 9
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -140,6 +214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 878787003}
+  - {fileID: 1262997491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,7 +236,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e43bfe67728a50344bea8e5563716eb6, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,11 +281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65eab4888e565b4599cf28fbbbc1331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSlopeAngle: 80
-  playerInput: {x: 0, y: 0}
-  mask:
+  dashMask:
     serializedVersion: 2
     m_Bits: 0
+  dashDistance: 1
+  dashTime: 1000
 --- !u!114 &7300223425986904386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,24 +298,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2b3a50516e7c04d8c63eb9c203df38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: {fileID: 11400000, guid: 4fb70be13d47bcf48a864b765490e379, type: 2}
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: eed792ea2e2faa346ba79f3dfc76340c, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   tutorial: 1
-  canInteract: 0
-  torch: {fileID: 0}
-  controller: {fileID: 0}
-  shoot: {fileID: 0}
-  isResting: 0
-  playerDamage:
-  - {fileID: 8300000, guid: 5002726090b157542b0e62d0ebfc261b, type: 3}
-  - {fileID: 8300000, guid: 61f9e769d7364004bb71e8ad456dca7a, type: 3}
-  - {fileID: 8300000, guid: f1df26f8e2f90184b8a45e40ded6039a, type: 3}
-  itemTextBox: {fileID: 0}
-  steps:
-  - {fileID: 8300000, guid: 52b9c01a391d78447a2a4e872c6daba3, type: 3}
-  moveStart: {fileID: 8300000, guid: 3a8a5756e169f1340bbde05e49656ea7, type: 3}
-  directionalInput: {x: 0, y: 0}
-  img: {fileID: 0}
-  playerDeath: {fileID: 8300000, guid: c7f31138a6117c448a279494bc687326, type: 3}
+  resetSpeed: 0
 --- !u!114 &7300223425986904389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,8 +329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootVertical: 0
   shootHorizontal: 0
-  dashSpeed: 3
-  dashTime: 2
 --- !u!50 &7300223425986904388
 Rigidbody2D:
   serializedVersion: 4
@@ -313,18 +385,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &481246194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7300223425986904391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7b51b6a3e03d94f84930516a58eb41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &481246201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,12 +397,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63787be09e0a9cd4c90cbac371e17b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalFlame: 100
-  currentFlame: 0
-  decayRate: 1
-  l: {fileID: 0}
-  text: {fileID: 0}
-  fillbar: {fileID: 0}
+  totalFlame: {fileID: 11400000, guid: 4a31efef777124d45bc94df2b88a1c19, type: 2}
+  decayRate: {fileID: 11400000, guid: 0c2b469370a09f2488d5d900da1b45fc, type: 2}
+  PlayerDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: eed792ea2e2faa346ba79f3dfc76340c, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  l: {fileID: 1262997492}
 --- !u!114 &481246202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,3 +429,162 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5307122149992654378, guid: 37da116e25ab062428d6b35c2e6dfb56,
     type: 3}
   lastFire: 0
+--- !u!96 &36260440
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300223425986904391}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 0.1
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.09745026
+        value: 0.49043846
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.82159424
+        value: 0.16241455
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.8113208, g: 0.6732476, b: 0.14159843, a: 1}
+      key1: {r: 1, g: 0.31402162, b: 0, a: 0.8627451}
+      key2: {r: 0, g: 0, b: 0, a: 0.11764706}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 46067
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 25829
+      atime2: 42020
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 3
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
+--- !u!114 &36260443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300223425986904391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f8afa223517b749a7b055fecc064f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &36260444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300223425986904391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa6764257435514a8a5307099d7be21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterInteractable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8d196641cf0868345bdca93cede50f6c, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  exitInteractable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f4c5f6a6beac75949ab06d0718e9c594, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  itemText: {fileID: 11400000, guid: 7c847f624c87e6d45b56019583b51095, type: 2}

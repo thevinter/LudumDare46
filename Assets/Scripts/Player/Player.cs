@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using ChrisTutorials.Persistent;
-using UnityEngine.UI;
 using System.Threading.Tasks;
-using UnityEditor.Animations;
 using UnityEngine.Events;
 
 public enum PlayerState {
@@ -18,31 +15,34 @@ public enum PlayerState {
 public class Player : MonoBehaviour, IDamageable {
     public FloatVariable moveSpeed;
     private Vector2 directionalInput;
+
+    [Tooltip("The event that gets invoked when the player dies")] 
     public UnityEvent deathEvent;
 
+    [Tooltip("A field used for testing purposes, should be left on true for the time being")]
     public bool tutorial = false;
-    public bool canInteract = false;
+
     private bool isResting = false;
     private bool canDamage = true;
-    private bool gameOver = false;
-    bool canPlaySound = true;
+    private bool canPlaySound = true;
 
     private PlayerFlame flame;
     private Controller2D controllerScript;
     private PlayerShoot shootScript;
-    private CameraShake shake = null;
-    private Renderer r;
+    private SpriteRenderer r;
     private InteractScript inter;
+
+    //Needs to be implemented again, probably with an event
+    private CameraShake shake = null;
 
     public bool resetSpeed;
 
     //Things to remove
     //Put this into a separate Audio controller with events and stuff
-    public AudioClip[] playerDamage;
-    public AudioClip playerDeath;
-    public AudioClip[] steps;
-    public AudioClip moveStart;
-
+    //public AudioClip[] playerDamageSounds;
+    //public AudioClip playerDeathSound;
+    //public AudioClip[] stepSounds;
+    //public AudioClip startMovingSound;
 
     public int Health { get => (int)flame.GetCurrentFlame(); set => throw new System.NotImplementedException(); }
     public Vector2 DirectionalInput { get => directionalInput; set { } }
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, IDamageable {
     /// Finds and initializes all the necessary components
     /// </summary>
     private void GetComponents() {
-        r = GetComponent<Renderer>();
+        r = GetComponent<SpriteRenderer>();
         controllerScript = GetComponent<Controller2D>();
         shootScript = GetComponent<PlayerShoot>();
         flame = GetComponent<PlayerFlame>();
@@ -143,9 +143,9 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     private async Task TurnRed() {
-        r.material.color = Color.red;
+        r.color = Color.red;
         await Task.Delay(100);
-        r.material.color = Color.white;
+        r.color = Color.white;
     }
 
     public void AddWeapon(GameObject weapon) {
@@ -167,17 +167,17 @@ public class Player : MonoBehaviour, IDamageable {
         if (canPlaySound){
             canPlaySound = false;
             _ = SoundTimer();
-            AudioClip stepSound = steps[Random.Range(0, steps.Length - 1)];
-            AudioManager.Instance.Play(stepSound, transform, .2f);
+            //AudioClip stepSound = stepSounds[Random.Range(0, stepSounds.Length - 1)];
+            //AudioManager.Instance.Play(stepSound, transform, .2f);
         }
     }
 
     
     public void Damage(int damage) {
         if (canDamage) {
-            AudioManager.Instance.Play(playerDamage[Random.Range(0,playerDamage.Length-1)], transform);
+            //AudioManager.Instance.Play(playerDamage[Random.Range(0,playerDamage.Length-1)], transform);
             canDamage = false;
-            shake.shake = 0.5f;
+            //shake.shake = 0.5f;
             _ = TurnRed();
             _ = Invuln();
             flame.ReduceCurrentFlame(damage);
