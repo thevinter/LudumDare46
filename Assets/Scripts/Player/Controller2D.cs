@@ -51,7 +51,7 @@ public class Controller2D : MonoBehaviour
         float actualDist = Physics2D.Raycast(transform.position, dir, dist, dashMask).distance;
         if (Physics2D.Raycast(transform.position, dir, dist, dashMask) && actualDist < dist){
             print(Physics2D.Raycast(transform.position, dir, dist) );
-            actualMove *= actualDist;
+            actualMove *= actualDist - 0.2843614f;
             return actualMove;
         } else return dir * dist;
     }

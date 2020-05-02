@@ -138,8 +138,12 @@ public class Player : MonoBehaviour, IDamageable {
     /// Recharghes the player's torch
     /// </summary>
     /// <param name="amount"></param>
-    public void RechargeTorch(int amount) {
+    public void RechargeHealth(int amount) {
         flame.Recharge(amount);
+    }
+
+    public void FillHealth() {
+        flame.Fill();
     }
 
     private async Task TurnRed() {

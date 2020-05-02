@@ -13,5 +13,6 @@ public class GameController : MonoBehaviour
     public async void RespawnPlayer() {
         await Task.Delay(1000);
         p.transform.position = lastSpawn.Value;
+        p.FillHealth();
     }
 }

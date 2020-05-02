@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public RoomManager Room { get => room; set => room=value; }
 
     public RoomManager room;
-    public int chaseDistance;
+    public float chaseDistance;
     public int health = 20;
     public float speed;
     public float attackDistance = 1;

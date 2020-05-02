@@ -15,9 +15,9 @@ MonoBehaviour:
   stateIndex: 1
   dialogueOptions:
   - Ciao
-  - 'supercalifrafgi supercalifrafgi supercalifrafgi supercalifrafgi supercalifrafgi '
-  - 'supercalifrafgi '
-  - 'supercalifrafgi '
+  - Se stai leggendo questo allora non stai grindando
+  - quindi...
+  - Hai il gay
   nextStateIfTrue: {fileID: 11400000, guid: 32766b0426a883f4188c19d7f0b9535f, type: 2}
   nextStateIfFalse: {fileID: 0}
   questReward: {fileID: 0}

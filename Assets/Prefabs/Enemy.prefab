@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3884819770005727468}
   - component: {fileID: 3884819770005727471}
   - component: {fileID: 4136212967584734547}
+  - component: {fileID: 6620084038758240711}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -743740097
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 297761703447499198, guid: 6e3f93fdd433acc47be343cf4ddb07c0, type: 3}
@@ -165,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room: {fileID: 0}
-  chaseDistance: 84
+  chaseDistance: 5.703391
   health: 30
   speed: 2
   attackDistance: 1
@@ -193,3 +194,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.21}
   serializedVersion: 2
   m_Radius: 0.22
+--- !u!114 &6620084038758240711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884819770005727474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4edac19757c9449a993bd840e879aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

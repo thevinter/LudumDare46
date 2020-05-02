@@ -12,7 +12,7 @@ public class TorchScript : MonoBehaviour, IInteractable
     public void Interact(Player p)
     {
         AudioManager.Instance.Play(pickupSound, transform, .05f);
-        p.RechargeTorch(20);
+        p.RechargeHealth(20);
         Destroy(this.gameObject.GetComponent<SpriteRenderer>());
         Destroy(this.gameObject.GetComponent<Collider2D>());
         Destroy(this.gameObject, 1f);
