@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 7300223425986904387}
   - component: {fileID: 7300223425986904386}
   - component: {fileID: 7300223425986904389}
-  - component: {fileID: 7300223425986904388}
   - component: {fileID: 481246205}
   - component: {fileID: 481246195}
   - component: {fileID: 481246201}
@@ -195,6 +194,7 @@ GameObject:
   - component: {fileID: 36260440}
   - component: {fileID: 36260443}
   - component: {fileID: 36260444}
+  - component: {fileID: 571620721}
   m_Layer: 9
   m_Name: Player 1
   m_TagString: Player
@@ -329,27 +329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootVertical: 0
   shootHorizontal: 0
---- !u!50 &7300223425986904388
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7300223425986904391}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!58 &481246205
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -588,3 +567,24 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   itemText: {fileID: 11400000, guid: 7c847f624c87e6d45b56019583b51095, type: 2}
+--- !u!50 &571620721
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300223425986904391}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

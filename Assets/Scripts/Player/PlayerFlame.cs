@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.UI;
+
 
 public class PlayerFlame : MonoBehaviour
 {
     [SerializeField] private FloatVariable totalFlame;
     [SerializeField] private FloatVariable decayRate;
     [SerializeField] private UnityEvent PlayerDeathEvent;
-
-    private float currentFlame;
+    [SerializeField] private FloatVariable currentRange;
+    [SerializeField] private FloatVariable currentFlame;
     private bool isBeingConsumed = true;
 
     private int nframes = 0;
@@ -21,6 +21,7 @@ public class PlayerFlame : MonoBehaviour
     [SerializeField] private Light2D l;
 
     private void Update() {
+        currentRange.SetValue(l.pointLightOuterRadius);
             nframes++;
             if (nframes >= 10) {
                 desiredRange = Random.Range(2.48f, 2.52f);
@@ -31,18 +32,18 @@ public class PlayerFlame : MonoBehaviour
             if (p.tutorial) l.pointLightInnerRadius = desiredRange;
             if (!p.tutorial) l.intensity = desiredIntensity;
 
-            if (currentFlame > totalFlame.Value) currentFlame = totalFlame.Value;
-            if (currentFlame < 0) PlayerDeathEvent.Invoke();
+            if (currentFlame.Value > totalFlame.Value) currentFlame.SetValue(totalFlame.Value);
+            if (currentFlame.Value < 0) PlayerDeathEvent.Invoke();
     }
 
     void Start() {
         GetComponents();
-        this.currentFlame = totalFlame.Value;
+        this.currentFlame.SetValue(totalFlame.Value);
         InvokeRepeating("Decay", 1f, 1f);
     }
     
     public void Recharge(int x) {
-        this.currentFlame += x;
+        this.currentFlame.ApplyChange(x);
     }
 
     public void SetConsuming(bool state) {
@@ -50,12 +51,12 @@ public class PlayerFlame : MonoBehaviour
     }
 
     public void Fill() {
-        currentFlame = totalFlame.Value;
+        currentFlame.SetValue(totalFlame.Value);
     }
 
     void Decay() {
         if (isBeingConsumed) {
-            this.currentFlame -= decayRate.Value;
+            this.currentFlame.ApplyChange(-decayRate.Value);
         }
     }
 
@@ -65,10 +66,10 @@ public class PlayerFlame : MonoBehaviour
     }
 
     public float GetCurrentFlame() {
-        return currentFlame;
+        return currentFlame.Value;
     }
 
     public void ReduceCurrentFlame(int value) {
-        currentFlame -= value;
+        currentFlame.ApplyChange(value);
     }
 }

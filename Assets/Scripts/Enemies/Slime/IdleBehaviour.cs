@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class IdleBehaviour : StateMachineBehaviour
 {
-    private GameObject player;
-    private Slime slime;
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        slime = animator.GetComponent<Slime>();
-    }
+    //private GameObject player;
+    //private Slime slime;
+    //// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    player = GameObject.FindGameObjectWithTag("Player");
+    //    slime = animator.GetComponent<Slime>();
+    //}
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if(Vector3.Distance(animator.gameObject.transform.position, player.transform.position) < slime.chaseDistance)
-        {
+    //// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    if(Vector3.Distance(animator.gameObject.transform.position, player.transform.position) < slime.chaseDistance)
+    //    {
 
-            animator.SetBool("isIdle", false);
-            animator.SetBool("isChasing", true);
-        } 
-    }
+    //        animator.SetBool("isIdle", false);
+    //        animator.SetBool("isChasing", true);
+    //    } 
+    //}
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    //// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
 
-    }
+    //}
 
     // OnState
     //is called right after Animator.OnAnimatorMove()

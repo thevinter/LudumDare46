@@ -4,38 +4,27 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour
 {
+    private Transform player;
+    public FloatVariable lightRange;
+    private Unit unit;
 
-    public int Health { get => health; set => throw new System.NotImplementedException(); }
-    public RoomManager Room { get => room; set => room=value; }
-
-    public RoomManager room;
-    public float chaseDistance;
-    public int health = 20;
-    public float speed;
-    public float attackDistance = 1;
-    public float attackRate = 0.5f;
-    public GameObject target;
-    public int damage = 10;
-    public bool canAttack = true;
-    public bool isAttacking = false;
-    public AudioClip[] monsterDamage;
-
-    public void StartAttacking(bool status, GameObject target) {
-        this.target = target;
-        isAttacking = status;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        unit = GetComponent<Unit>();
     }
 
-    public void Damage(int damage) {
-        AudioManager.Instance.Play(monsterDamage[Random.Range(0,monsterDamage.Length)], gameObject.transform, .05f, 2f);
-        _ = TurnRed();
-        health -= damage;
-    }
-
-    private async Task TurnRed() {
-        this.gameObject.GetComponent<Renderer>().material.color = Color.red;
-        await Task.Delay(100); 
-        this.gameObject.GetComponent<Renderer>().material.color = Color.white;
+    public void Update()
+    {
+        if (Vector2.Distance(transform.position, player.position) < lightRange.Value) 
+        {
+            unit.RequestPath(true);
+        }
+        else
+        {
+            unit.RequestPath(false);
+        }
     }
 }
