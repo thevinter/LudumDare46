@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb583f0aaddc7a14a857208215a8f199, type: 3}
   m_Name: CurrentOutRange
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: 0
+  DeveloperDescription: The outer range of light of the player
+  Value: 5.7033906

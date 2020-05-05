@@ -10,9 +10,14 @@ public class Unit : MonoBehaviour
     public float turnDist = 0;
     public float turnSpeed = 3;
     bool followingPath = true;
-
+    private EnemyState state;
     Path path;
+    public float attackRadius = 1;
 
+    private void Start()
+    {
+        state = GetComponent<EnemyState>();
+    }
 
     public void RequestPath(bool state)
     {
@@ -32,18 +37,27 @@ public class Unit : MonoBehaviour
 
     IEnumerator FollowPath()
     {
+
         Vector2 moveDirection = Vector2.zero;
         bool followingPath = true;
         int pathIndex = 0;
-        if (path.lookPoints.Length == 0) followingPath = false;
+        if (path.lookPoints.Length == 0)
+        {
+            followingPath = false;
+        }
         else moveDirection = (path.lookPoints[0] - (Vector2)transform.position).normalized;
+        if (!(state.GetState() == _EnemyState.chasing) && !(state.GetState() == _EnemyState.idle)) followingPath = false;
 
         while (followingPath)
         {
             Vector2 pos2D = (Vector2)transform.position;
             if (path.turnBoundaries[pathIndex].HasCrossedLine(pos2D))
             {
-                if (pathIndex == path.finishLineIndex) followingPath = false;
+                if (pathIndex == path.finishLineIndex)
+                {
+                    followingPath = false;
+                }
+
                 else pathIndex++;
             }
             yield return null;
@@ -54,6 +68,12 @@ public class Unit : MonoBehaviour
                 transform.Translate(moveDirection * Time.deltaTime * speed);
             }
         }
+    }
+
+    private void Update()
+    {
+        print(state.GetState());
+
     }
 
     public void OnDrawGizmos()
